@@ -149,7 +149,7 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
     <div className="min-h-screen flex flex-col bg-[#050505] text-white overflow-x-hidden">
       <SEOMetadata lang={lang} />
       
-      {/* HEADER - UPDATED WITH RESPONSIVE MENU LABEL */}
+      {/* HEADER */}
       <header className={`fixed top-0 left-0 w-full z-[80] p-6 md:p-12 flex justify-between items-center transition-transform duration-500 ${showHeader || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
         <button onClick={() => setIsMenuOpen(true)} className="group flex items-center space-x-4 focus:outline-none">
           <div className="flex flex-col items-start space-y-1.5 md:space-y-2">
@@ -159,7 +159,6 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
           <span className="hidden md:block text-[10px] font-bold uppercase tracking-[0.4em] group-hover:text-[#dbad1e] transition-colors">MENU</span>
         </button>
 
-        {/* LOGO IMAGE - SAME SIZE */}
         {!isHomePage && (
            <Link 
             to={lPath("/")} 
@@ -178,7 +177,6 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
           </Link>
         )}
 
-        {/* SEARCH ICON */}
         <button onClick={() => setIsSearchOpen(true)} className="group relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
           <svg className="w-5 h-5 md:w-6 md:h-6 text-white/50 group-hover:text-white transition-all transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -189,15 +187,15 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
       {/* SEARCH OVERLAY */}
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} lang={lang} />
 
-      {/* SIDE MENU */}
-      <aside className={`fixed top-0 left-0 h-full w-full md:w-[45%] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-20 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <button onClick={() => setIsMenuOpen(false)} className="flex items-center space-x-4 opacity-30 hover:opacity-100 transition-opacity z-[120] mb-auto group">
+      {/* SIDE MENU - UPDATED: ALIGNED TO LEFT (UNDER CLOSE BTN), SLIGHTLY LARGER MOBILE TEXT */}
+      <aside className={`fixed top-0 left-0 h-full w-full md:w-[500px] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-16 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <button onClick={() => setIsMenuOpen(false)} className="flex items-center space-x-4 opacity-30 hover:opacity-100 transition-opacity z-[120] mb-12 group">
           <svg className="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
           <span className="text-[10px] font-bold uppercase tracking-widest">ZAVŘÍT</span>
         </button>
 
-        <div className="flex-grow flex flex-col justify-center">
-          <nav className="flex flex-col space-y-6 md:space-y-10 items-start">
+        <div className="flex-grow flex flex-col justify-center items-start">
+          <nav className="flex flex-col space-y-6 md:space-y-7 items-start text-left w-full">
             {[
               { to: "/", label: t.nav_home },
               { to: "/inventory", label: t.nav_inventory },
@@ -212,13 +210,17 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
                 key={link.to} 
                 to={lPath(link.to)} 
                 onClick={() => setIsMenuOpen(false)} 
-                className={`text-2xl md:text-4xl font-bold tracking-tighter uppercase font-heading hover:text-[#dbad1e] transition-all hover:translate-x-4 duration-500 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${idx * 50}ms` }}
+                className={`text-3xl md:text-3xl font-bold tracking-tight uppercase font-heading hover:text-[#dbad1e] transition-all duration-500 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ transitionDelay: `${idx * 40}ms` }}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
+        </div>
+        
+        <div className="mt-auto pt-12 text-left opacity-10">
+          <span className="text-[8px] uppercase tracking-[1em] font-bold">BBCARS SHOWROOM</span>
         </div>
       </aside>
 
