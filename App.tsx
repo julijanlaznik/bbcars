@@ -76,8 +76,8 @@ const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void; lang: Lang
 
   return (
     <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center px-8 animate-in fade-in duration-500">
-      <button onClick={onClose} className="absolute top-12 right-12 text-white/40 hover:text-white transition-colors">
-        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12" /></svg>
+      <button onClick={onClose} className="absolute top-6 right-6 md:top-12 md:right-12 text-white/40 hover:text-white transition-colors">
+        <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
       
       <div className="w-full max-w-4xl">
@@ -86,11 +86,11 @@ const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void; lang: Lang
           type="text" 
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={lang === 'CZ' ? "Hledat vůz..." : "Search for a car..."}
-          className="w-full bg-transparent border-b border-white/10 py-8 text-4xl md:text-6xl font-bold uppercase tracking-tighter outline-none placeholder:text-white/10 focus:border-[#dbad1e] transition-all text-center"
+          placeholder={lang === 'CZ' ? "Hledat vůz..." : "Search..."}
+          className="w-full bg-transparent border-b border-white/10 py-6 md:py-8 text-2xl md:text-6xl font-bold uppercase tracking-tighter outline-none placeholder:text-white/10 focus:border-[#dbad1e] transition-all text-center"
         />
 
-        <div className="mt-12 space-y-4">
+        <div className="mt-8 md:mt-12 space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
           {filteredCars.map(car => (
             <button 
               key={car.id} 
@@ -98,26 +98,22 @@ const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void; lang: Lang
                 navigate(`/${lang.toLowerCase()}/auto/${car.id}`);
                 onClose();
               }}
-              className="w-full flex items-center justify-between p-6 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all text-left"
+              className="w-full flex items-center justify-between p-4 md:p-6 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all text-left"
             >
-              <div className="flex items-center space-x-8">
-                <div className="w-24 aspect-video overflow-hidden border border-white/10">
-                  {/* --- FOTO: NÁHLED VOZU VE VYHLEDÁVÁNÍ (data/cars.ts) --- */}
+              <div className="flex items-center space-x-4 md:space-x-8">
+                <div className="w-16 md:w-24 aspect-video overflow-hidden border border-white/10">
                   <img src={car.image} alt={car.model} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                   <p className="text-[10px] uppercase tracking-widest text-white/30 font-bold mb-1">{car.brand}</p>
-                   <p className="text-xl font-bold uppercase tracking-tight">{car.model}</p>
+                   <p className="text-[8px] md:text-[9px] uppercase tracking-widest text-white/30 font-bold mb-1">{car.brand}</p>
+                   <p className="text-base md:text-xl font-bold uppercase tracking-tight">{car.model}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold tracking-tighter">{car.price}</p>
+                <p className="text-sm md:text-lg font-bold tracking-tighter">{car.price}</p>
               </div>
             </button>
           ))}
-          {query.trim() && filteredCars.length === 0 && (
-            <p className="text-white/20 text-center py-20 uppercase tracking-[0.5em] font-light">Žádné výsledky</p>
-          )}
         </div>
       </div>
     </div>
@@ -150,47 +146,41 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
   }, [lastScrollY]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#050505] text-white">
+    <div className="min-h-screen flex flex-col bg-[#050505] text-white overflow-x-hidden">
       <SEOMetadata lang={lang} />
       
-      {/* HEADER */}
+      {/* HEADER - UPDATED WITH RESPONSIVE MENU LABEL */}
       <header className={`fixed top-0 left-0 w-full z-[80] p-6 md:p-12 flex justify-between items-center transition-transform duration-500 ${showHeader || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
-        <button onClick={() => setIsMenuOpen(true)} className="group flex items-center space-x-6 h-12 focus:outline-none">
-          <div className="flex flex-col items-start space-y-2">
-            <span className="w-14 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
-            <span className="w-7 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
+        <button onClick={() => setIsMenuOpen(true)} className="group flex items-center space-x-4 focus:outline-none">
+          <div className="flex flex-col items-start space-y-1.5 md:space-y-2">
+            <span className="w-7 md:w-10 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
+            <span className="w-4 md:w-6 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
           </div>
-          <span className="text-[11px] uppercase tracking-[0.3em] font-bold">MENU</span>
+          <span className="hidden md:block text-[10px] font-bold uppercase tracking-[0.4em] group-hover:text-[#dbad1e] transition-colors">MENU</span>
         </button>
 
-        {/* LOGO IMAGE - Zde nahraďte 'logo.png' cestou k vašemu souboru */}
+        {/* LOGO IMAGE - SAME SIZE */}
         {!isHomePage && (
            <Link 
             to={lPath("/")} 
             className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group"
           >
-            {/* 
-                VÝMĚNA LOGA: 
-                - Změňte src="logo.png" na název vašeho souboru (např. src="bb-logo.png")
-                - Velikost je nastavena pomocí h-8 (výška 32px) a md:h-10 (výška 40px na počítači)
-            */}
             <img 
               src="/logo.png" 
               alt="BBCars Logo" 
-              className="h-8 md:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+              className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
               onError={(e) => {
-                // Toto je záloha, pokud se obrázek nenačte, zobrazí se BB text
                 (e.target as any).style.display = 'none';
                 (e.target as any).nextSibling.style.display = 'block';
               }}
             />
-            <span className="hidden font-heading font-extrabold text-white text-3xl md:text-4xl tracking-tighter scale-y-90 select-none">BB</span>
+            <span className="hidden font-heading font-extrabold text-white text-2xl md:text-3xl tracking-tighter scale-y-90 select-none">BB</span>
           </Link>
         )}
 
         {/* SEARCH ICON */}
-        <button onClick={() => setIsSearchOpen(true)} className="group relative flex items-center h-14 w-14 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all border border-transparent hover:border-white/10">
-          <svg className="w-7 h-7 text-white/70 group-hover:text-white transition-all transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onClick={() => setIsSearchOpen(true)} className="group relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-white/50 group-hover:text-white transition-all transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </button>
@@ -200,14 +190,14 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} lang={lang} />
 
       {/* SIDE MENU */}
-      <aside className={`fixed top-0 left-0 h-full w-full md:w-1/2 bg-black z-[110] transition-transform duration-700 p-12 md:p-24 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <button onClick={() => setIsMenuOpen(false)} className="flex items-center space-x-4 opacity-40 hover:opacity-100 transition-opacity z-[120] mb-auto">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12" /></svg>
-          <span className="text-[11px] font-bold uppercase tracking-widest">ZAVŘÍT</span>
+      <aside className={`fixed top-0 left-0 h-full w-full md:w-[45%] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-20 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <button onClick={() => setIsMenuOpen(false)} className="flex items-center space-x-4 opacity-30 hover:opacity-100 transition-opacity z-[120] mb-auto group">
+          <svg className="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
+          <span className="text-[10px] font-bold uppercase tracking-widest">ZAVŘÍT</span>
         </button>
 
         <div className="flex-grow flex flex-col justify-center">
-          <nav className="flex flex-col space-y-8 items-start text-left">
+          <nav className="flex flex-col space-y-6 md:space-y-10 items-start">
             {[
               { to: "/", label: t.nav_home },
               { to: "/inventory", label: t.nav_inventory },
@@ -217,12 +207,13 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
               { to: "/about", label: t.nav_about },
               { to: "/services", label: t.nav_services },
               { to: "/contact", label: t.nav_contact },
-            ].map((link) => (
+            ].map((link, idx) => (
               <Link 
                 key={link.to} 
                 to={lPath(link.to)} 
                 onClick={() => setIsMenuOpen(false)} 
-                className="text-2xl md:text-3xl font-bold tracking-tighter uppercase font-heading hover:text-[#dbad1e] transition-all hover:translate-x-4"
+                className={`text-2xl md:text-4xl font-bold tracking-tighter uppercase font-heading hover:text-[#dbad1e] transition-all hover:translate-x-4 duration-500 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${idx * 50}ms` }}
               >
                 {link.label}
               </Link>
