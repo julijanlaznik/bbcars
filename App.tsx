@@ -175,7 +175,7 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
                 - Velikost je nastavena pomocí h-8 (výška 32px) a md:h-10 (výška 40px na počítači)
             */}
             <img 
-              src="logo.png" 
+              src="/logo.png" 
               alt="BBCars Logo" 
               className="h-8 md:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
               onError={(e) => {
