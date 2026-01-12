@@ -41,7 +41,7 @@ const Services: React.FC<{ lang: Language }> = ({ lang }) => {
             </div>
           </div>
           <div className="relative h-[400px] lg:h-auto overflow-hidden">
-             <img src="https://images.unsplash.com/photo-1517733948473-efec634333da?auto=format&fit=crop&q=80&w=2400" className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 transition-all duration-1000" alt="Towing truck" />
+             <img src="/odtah-auto.png" className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 transition-all duration-1000" alt="Towing truck" />
           </div>
         </div>
       </section>
