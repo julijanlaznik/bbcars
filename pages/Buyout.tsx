@@ -10,7 +10,7 @@ const Buyout: React.FC<{ lang: Language }> = ({ lang }) => {
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           {/* --- FOTO: HLAVNÍ OBRÁZEK VÝKUPU (PENÍZE/ATMOSFÉRA) --- */}
-          <img src="https://images.unsplash.com/photo-1565514020179-026b92b2d70b?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover grayscale opacity-30" alt="Buyout background" />
+          <img src="/vykup-vozu.png" className="w-full h-full object-cover grayscale opacity-30" alt="Buyout background" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-[#050505]" />
         </div>
         <div className="relative z-10 text-center px-8">
