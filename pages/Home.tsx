@@ -42,32 +42,41 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ lang }) => {
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const t = translations[lang];
-  const featuredCars = cars.slice(0, 4);
+  const featuredCars = cars.slice(0, 6);
   const lPath = (path: string) => `/${lang.toLowerCase()}${path}`;
   const googleMapsUrl = "https://www.google.com/maps/dir/?api=1&destination=B%26B+Cars+4You+s.r.o.%2C+Plze%C5%88sk%C3%A1+968%2C+337+01+Rokycany+1";
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.479507817088!2d13.5855263!3d49.7423018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470ae9a9c7382f71%3A0x8892f3d242699042!2sPlze%C5%88sk%C3%A1%20968%2C%20337%2001%20Rokycany!5e1!3m2!1scs!2scz!4v1715600000000!5m2!1scs!2scz&maptype=satellite";
 
   return (
     <div className="fade-in overflow-x-hidden">
-      {/* --- HERO SECTION WITH REDUCED GRADIENT AND SIZES --- */}
-      <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden">
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=100&w=2400" className="w-full h-full object-cover" alt="Porsche 911 GT3" />
-          {/* Gradient reduced by 50% opacity for better photo visibility */}
+          <img 
+            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
+            className={`w-full h-full object-cover transition-opacity duration-1000 ${heroLoaded ? 'opacity-100' : 'opacity-0'}`} 
+            alt={lang === 'CZ' ? "Prodej luxusních vozů Porsche 911 GT3 v BBCars" : "Luxury car sales Porsche 911 GT3 at BBCars"} 
+            onLoad={() => setHeroLoaded(true)}
+            // @ts-ignore
+            fetchpriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/15 to-transparent z-10" />
           <div className="absolute inset-0 bg-black/10 z-0" />
         </div>
         <div className="relative z-20 w-full max-w-screen-2xl mx-auto pt-20">
           <div className="max-w-5xl">
             <h1 className="mb-8 md:mb-10 uppercase leading-tight">
-              {/* Slightly smaller top heading */}
-              <span className="block text-xs md:text-xl tracking-[0.3em] font-[100] text-white/80 mb-2 md:mb-4">Prodej luxusních vozů</span>
-              {/* Slightly smaller main heading */}
+              <span className="block text-xs md:text-xl tracking-[0.3em] font-[100] text-white/80 mb-2 md:mb-4">
+                {lang === 'CZ' ? 'Prodej luxusních a prémiových vozů' : 'Luxury and premium car sales'}
+              </span>
               <span className="block text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter font-heading text-white">BB CARS</span>
             </h1>
             <Link to={lPath("/inventory")} className="inline-flex items-center group">
-              <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-white text-black group-hover:bg-[#dbad1e] transition-all">Zobrazit nabídku</span>
+              <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-white text-black group-hover:bg-[#dbad1e] transition-all">
+                {lang === 'CZ' ? 'Zobrazit nabídku' : 'View inventory'}
+              </span>
             </Link>
           </div>
         </div>
@@ -86,7 +95,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
           {featuredCars.map((car) => (
             <Link key={car.id} to={lPath(`/auto/${car.id}`)} className="group relative flex flex-col bg-[#080808] pb-10">
               <div className="relative aspect-video overflow-hidden bg-[#0a0a0a] mb-6 md:mb-10">
-                <img src={car.image} alt={car.model} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
+                <img src={car.image} alt={`${car.brand} ${car.model} prodej ČR`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               </div>
               <div className="flex flex-col px-6 md:px-20">
                 <h3 className="text-xl md:text-2xl font-bold uppercase font-heading group-hover:text-[#dbad1e] transition-colors leading-tight">
@@ -103,7 +112,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       {/* --- FOTO: SEKCE VŮZ NA OBJEDNÁVKU --- */}
       <section className="relative flex flex-col lg:flex-row min-h-[50vh] md:min-h-[70vh] border-t border-white/5 bg-black">
         <div className="w-full lg:w-1/2 relative h-[35vh] md:h-[40vh] lg:h-auto overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2400" className="w-full h-full object-cover grayscale opacity-40 hover:scale-110 transition-transform duration-[5s]" alt="Custom order" />
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2400" className="w-full h-full object-cover grayscale opacity-40 hover:scale-110 transition-transform duration-[5s]" alt={lang === 'CZ' ? "Luxusní vůz na individuální objednávku" : "Luxury custom car order"} />
         </div>
         <div className="w-full lg:w-1/2 p-10 md:p-20 flex items-center">
           <div className="max-w-lg">
@@ -113,12 +122,36 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* SHOWROOM SECTION WITH COLOR SAT MAP */}
+      {/* --- SOCIAL PROOF: ANIMATED STATS --- */}
+      <section className="py-24 md:py-40 px-6 md:px-20 bg-black border-t border-white/5">
+        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-0">
+          <div className="text-center md:border-r border-white/5">
+            <p className="text-5xl md:text-7xl font-bold font-heading text-[#dbad1e] mb-4 tabular-nums">
+              <CountingNumber end={15} />
+            </p>
+            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-bold text-white/40">{lang === 'CZ' ? 'Let na trhu' : 'Years on market'}</p>
+          </div>
+          <div className="text-center md:border-r border-white/5">
+            <p className="text-5xl md:text-7xl font-bold font-heading text-[#dbad1e] mb-4 tabular-nums">
+              <CountingNumber end={500} suffix="+" />
+            </p>
+            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-bold text-white/40">{lang === 'CZ' ? 'Prodaných vozů' : 'Cars sold'}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-5xl md:text-7xl font-bold font-heading text-[#dbad1e] mb-4 tabular-nums">
+              <CountingNumber end={100} suffix="%" />
+            </p>
+            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-bold text-white/40">{lang === 'CZ' ? 'Garance původu' : 'Origin guarantee'}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* SHOWROOM SECTION */}
       <section className="bg-[#080808] border-t border-white/5">
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-20 grayscale" alt="Showroom" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-20 grayscale" alt="BBCars Showroom Rokycany" />
             </div>
             <div className="relative z-10 px-6 text-center">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>
@@ -127,7 +160,28 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             </div>
           </div>
           <div className="w-full lg:w-1/2 h-[350px] md:h-[450px] lg:h-auto border-l border-white/5">
-            <iframe src={mapEmbedUrl} className="w-full h-full border-0" allowFullScreen={true} loading="lazy"></iframe>
+            <iframe src={mapEmbedUrl} className="w-full h-full border-0" allowFullScreen={true} title="Mapa BBCars Rokycany" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* --- LOCAL SEO EXPANSION BLOCK --- */}
+      <section className="py-16 md:py-24 px-6 md:px-20 bg-black border-t border-white/5">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="max-w-4xl text-white/20 text-[11px] md:text-[13px] leading-relaxed uppercase tracking-widest font-light">
+            {lang === 'CZ' ? (
+              <p>
+                Jsme váš specializovaný partner pro <strong className="text-white/30">prodej luxusních vozů v ČR</strong> se zaměřením na <strong className="text-white/30">prémiová auta</strong> v regionech Plzeň a Rokycany. 
+                Náš showroom nabízí exkluzivní kurátorský výběr značek jako Porsche, Ferrari či Bentley. Zajišťujeme individuální <strong className="text-white/30">dovoz aut z Německa</strong> a celé Evropy 
+                přímo na dálnici D5. Pokud hledáte <strong className="text-white/30">Porsche 911 GT3 prodej</strong> nebo jiný ikonický model, BBCars je synonymem pro důvěru v segmentu <strong className="text-white/30">luxury car dealer Europe</strong>.
+              </p>
+            ) : (
+              <p>
+                We are your specialized partner for <strong className="text-white/30">luxury car sales in the Czech Republic</strong>, focusing on <strong className="text-white/30">premium cars</strong> in Plzeň and Rokycany regions. 
+                Our showroom offers an exclusive curated selection of brands like Porsche, Ferrari, and Bentley. We provide individual <strong className="text-white/30">car import from Germany</strong> and across Europe, 
+                located directly on the D5 highway. Whether you are looking for <strong className="text-white/30">Porsche 911 GT3 for sale</strong> or another iconic model, BBCars is synonymous with trust as a <strong className="text-white/30">luxury car dealer Europe</strong>.
+              </p>
+            )}
           </div>
         </div>
       </section>

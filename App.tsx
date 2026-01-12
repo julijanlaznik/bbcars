@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { HashRouter, Routes, Route, Link, useLocation, useParams, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation, useParams, useNavigate, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import CarDetail from './pages/CarDetail';
@@ -17,19 +17,95 @@ import { Language } from './types';
 import { translations } from './i18n/translations';
 import { cars } from './data/cars';
 
-const SEOMetadata: React.FC<{ lang: Language }> = ({ lang }) => {
+const SEOManager: React.FC<{ lang: Language }> = ({ lang }) => {
   const { pathname } = useLocation();
+  
   useEffect(() => {
     let title = "BBCars | Luxury Digital Showroom";
-    if (pathname.includes('/inventory')) title = lang === 'CZ' ? "Nabídka vozů | BBCars" : "Inventory | BBCars";
-    else if (pathname.includes('/about')) title = lang === 'CZ' ? "O nás | BBCars" : "About Us | BBCars";
-    else if (pathname.includes('/buyout')) title = lang === 'CZ' ? "Výkup vozů | BBCars" : "Car Buyout | BBCars";
-    else if (pathname.includes('/services')) title = lang === 'CZ' ? "Služby | BBCars" : "Services | BBCars";
-    else if (pathname.includes('/rent')) title = lang === 'CZ' ? "Pronájem vozů | BBCars" : "Car Rental | BBCars";
-    else if (pathname.includes('/terms')) title = lang === 'CZ' ? "Obchodní podmínky | BBCars" : "Terms & Conditions | BBCars";
-    else if (pathname.includes('/privacy')) title = lang === 'CZ' ? "Ochrana soukromí | BBCars" : "Privacy Policy | BBCars";
+    let description = lang === 'CZ' 
+      ? "Specializovaný prodejce luxusních a prémiových vozů. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek v ČR."
+      : "Specialized dealer of luxury and premium cars. Curated selection of Porsche, Ferrari, Bentley and other exclusive brands in CZ.";
+    
+    // Check if we are on a car detail page
+    const carDetailMatch = pathname.match(/\/(cs|en)\/auto\/([^\/]+)/i);
+    if (carDetailMatch) {
+      const carId = carDetailMatch[2];
+      const car = cars.find(c => c.id === carId);
+      if (car) {
+        title = `${car.brand} ${car.model} (${car.year}) | BBCars`;
+        description = lang === 'CZ' 
+          ? `${car.brand} ${car.model} na prodej. Nájezd ${car.km}, výkon ${car.powerKw}. Prověřený původ a špičkový stav v BBCars Rokycany.`
+          : `${car.brand} ${car.model} for sale. Mileage ${car.km}, power ${car.powerKw}. Verified origin and top condition at BBCars.`;
+        
+        // Inject JSON-LD Product Schema
+        const schema = {
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": `${car.brand} ${car.model}`,
+          "image": car.image,
+          "description": car.story[lang],
+          "brand": {
+            "@type": "Brand",
+            "name": car.brand
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "CZK",
+            "price": car.price.replace(/\s/g, '').replace('Kč', ''),
+            "itemCondition": "https://schema.org/UsedCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "BBCars"
+            }
+          }
+        };
+        const existingScript = document.getElementById('json-ld-schema');
+        if (existingScript) existingScript.remove();
+        
+        const script = document.createElement('script');
+        script.id = 'json-ld-schema';
+        script.type = 'application/ld+json';
+        script.innerHTML = JSON.stringify(schema);
+        document.head.appendChild(script);
+      }
+    } else {
+      document.getElementById('json-ld-schema')?.remove();
+      
+      if (pathname.includes('/inventory')) {
+        title = lang === 'CZ' ? "Nabídka luxusních vozů | BBCars" : "Luxury Car Inventory | BBCars";
+      } else if (pathname.includes('/about')) {
+        title = lang === 'CZ' ? "O nás | Příběh BBCars" : "About Us | The BBCars Story";
+      } else if (pathname.includes('/contact')) {
+        title = lang === 'CZ' ? "Kontaktujte nás | Showroom Rokycany" : "Contact Us | Rokycany Showroom";
+      }
+    }
+
     document.title = title;
+    
+    const updateMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) || document.querySelector(`meta[property="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        if (name.startsWith('og:')) el.setAttribute('property', name);
+        else el.setAttribute('name', name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    updateMeta('description', description);
+    updateMeta('og:title', title);
+    updateMeta('og:description', description);
+    updateMeta('og:url', window.location.href);
+    
+    let canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    canonical.setAttribute('href', window.location.origin + pathname);
+    if (!document.querySelector('link[rel="canonical"]')) document.head.appendChild(canonical);
+
   }, [pathname, lang]);
+  
   return null;
 };
 
@@ -129,9 +205,10 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
   const { pathname } = useLocation();
   const lPath = (path: string) => `/${lang.toLowerCase()}${path}`;
 
+  // Fix home page detection for subpaths
   const isHomePage = useMemo(() => {
     const segments = pathname.split('/').filter(Boolean);
-    return segments.length <= 1;
+    return segments.length === 1; // e.g. /cs or /en
   }, [pathname]);
 
   useEffect(() => {
@@ -147,7 +224,7 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
 
   return (
     <div className="min-h-screen flex flex-col bg-[#050505] text-white overflow-x-hidden">
-      <SEOMetadata lang={lang} />
+      <SEOManager lang={lang} />
       
       {/* HEADER */}
       <header className={`fixed top-0 left-0 w-full z-[80] p-6 md:p-12 flex justify-between items-center transition-transform duration-500 ${showHeader || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
@@ -161,19 +238,10 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
 
         {!isHomePage && (
            <Link 
-            to={lPath("/")} 
+            to={lPath("")} 
             className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group"
           >
-            <img 
-              src="/logo.png" 
-              alt="BBCars Logo" 
-              className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
-              onError={(e) => {
-                (e.target as any).style.display = 'none';
-                (e.target as any).nextSibling.style.display = 'block';
-              }}
-            />
-            <span className="hidden font-heading font-extrabold text-white text-2xl md:text-3xl tracking-tighter scale-y-90 select-none">BB</span>
+            <span className="font-heading font-extrabold text-white text-2xl md:text-3xl tracking-tighter scale-y-90 select-none">BB CARS</span>
           </Link>
         )}
 
@@ -187,8 +255,8 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
       {/* SEARCH OVERLAY */}
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} lang={lang} />
 
-      {/* SIDE MENU - UPDATED: ALIGNED TO LEFT (UNDER CLOSE BTN), SLIGHTLY LARGER MOBILE TEXT */}
-      <aside className={`fixed top-0 left-0 h-full w-full md:w-[500px] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-16 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      {/* SIDE MENU */}
+      <aside className={`fixed top-0 left-0 h-full w-full md:w-[500px] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-16 flex flex-col border-r border-white/5 will-change-transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <button onClick={() => setIsMenuOpen(false)} className="flex items-center space-x-4 opacity-30 hover:opacity-100 transition-opacity z-[120] mb-12 group">
           <svg className="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
           <span className="text-[10px] font-bold uppercase tracking-widest">ZAVŘÍT</span>
@@ -197,21 +265,21 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
         <div className="flex-grow flex flex-col justify-center items-start">
           <nav className="flex flex-col space-y-6 md:space-y-7 items-start text-left w-full">
             {[
-              { to: "/", label: t.nav_home },
-              { to: "/inventory", label: t.nav_inventory },
-              { to: "/rent", label: t.nav_rent },
-              { to: "/buyout", label: t.nav_buyout },
-              { to: "/custom-order", label: t.nav_custom_order },
-              { to: "/about", label: t.nav_about },
-              { to: "/services", label: t.nav_services },
-              { to: "/contact", label: t.nav_contact },
+              { to: "", label: t.nav_home },
+              { to: "inventory", label: t.nav_inventory },
+              { to: "rent", label: t.nav_rent },
+              { to: "buyout", label: t.nav_buyout },
+              { to: "custom-order", label: t.nav_custom_order },
+              { to: "about", label: t.nav_about },
+              { to: "services", label: t.nav_services },
+              { to: "contact", label: t.nav_contact },
             ].map((link, idx) => (
               <Link 
                 key={link.to} 
-                to={lPath(link.to)} 
+                to={lPath(`/${link.to}`)} 
                 onClick={() => setIsMenuOpen(false)} 
                 className={`text-3xl md:text-3xl font-bold tracking-tight uppercase font-heading hover:text-[#dbad1e] transition-all duration-500 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${idx * 40}ms` }}
+                style={{ transitionDelay: `${isMenuOpen ? idx * 40 : 0}ms` }}
               >
                 {link.label}
               </Link>
@@ -227,16 +295,16 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home lang={lang} />} />
-          <Route path="/inventory" element={<Inventory lang={lang} />} />
-          <Route path="/buyout" element={<Buyout lang={lang} />} />
-          <Route path="/services" element={<Services lang={lang} />} />
-          <Route path="/rent" element={<Rent lang={lang} />} />
-          <Route path="/about" element={<AboutUs lang={lang} />} />
-          <Route path="/auto/:id" element={<CarDetail lang={lang} />} />
-          <Route path="/custom-order" element={<CustomOrder lang={lang} />} />
-          <Route path="/contact" element={<Contact lang={lang} />} />
-          <Route path="/terms" element={<Terms lang={lang} />} />
-          <Route path="/privacy" element={<Privacy lang={lang} />} />
+          <Route path="inventory" element={<Inventory lang={lang} />} />
+          <Route path="buyout" element={<Buyout lang={lang} />} />
+          <Route path="services" element={<Services lang={lang} />} />
+          <Route path="rent" element={<Rent lang={lang} />} />
+          <Route path="about" element={<AboutUs lang={lang} />} />
+          <Route path="auto/:id" element={<CarDetail lang={lang} />} />
+          <Route path="custom-order" element={<CustomOrder lang={lang} />} />
+          <Route path="contact" element={<Contact lang={lang} />} />
+          <Route path="terms" element={<Terms lang={lang} />} />
+          <Route path="privacy" element={<Privacy lang={lang} />} />
         </Routes>
       </main>
       <Footer lang={lang} />
@@ -249,7 +317,7 @@ const LanguageWrapper = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const [lang, setLang] = React.useState<Language>('CZ');
   useEffect(() => {
-    if (langParam === 'en') setLang('EN');
+    if (langParam?.toLowerCase() === 'en') setLang('EN');
     else setLang('CZ');
   }, [langParam]);
   return <Layout lang={lang} setLang={setLang} />;
@@ -257,13 +325,13 @@ const LanguageWrapper = () => {
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/:lang/*" element={<LanguageWrapper />} />
-        <Route path="*" element={<Navigate to="/cs/" replace />} />
+        <Route path="*" element={<Navigate to="/cs" replace />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

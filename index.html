@@ -5,12 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BBCars | Luxury Digital Showroom</title>
+    <meta name="description" content="Specializovaný prodejce luxusních vozů v ČR. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek. Showroom Rokycany.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bbcars.cz/">
+    <meta property="og:title" content="BBCars | Luxury Digital Showroom">
+    <meta property="og:description" content="Specializovaný prodejce luxusních vozů v ČR. Showroom Rokycany.">
+    <meta property="og:image" content="https://www.bbcars.cz/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.bbcars.cz/">
+    <meta property="twitter:title" content="BBCars | Luxury Digital Showroom">
+    <meta property="twitter:description" content="Specializovaný prodejce luxusních vozů v ČR. Showroom Rokycany.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-     <!-- FAVICON -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "BBCars",
+      "url": "https://www.bbcars.cz",
+      "logo": "https://www.bbcars.cz/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Plzeňská 968",
+        "addressLocality": "Rokycany",
+        "postalCode": "33701",
+        "addressCountry": "CZ"
+      },
+      "telephone": "+420605034911",
+      "priceRange": "$$$$"
+    }
+    </script>
+
     <style>
         body {
             font-family: 'Outfit', sans-serif;
@@ -38,7 +72,7 @@
         }
         .progress-bar-active {
           animation: slideProgress 6s linear forwards;
-          background-color: #dbad1e; /* New luxury gold accent */
+          background-color: #dbad1e;
         }
     </style>
 <script type="importmap">
