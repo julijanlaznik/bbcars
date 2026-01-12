@@ -93,7 +93,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="py-20 md:py-40 px-6 md:px-20 border-b border-white/5" ref={philReveal.ref}>
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className={`md:col-span-10 lg:col-span-8 transition-all duration-[1.5s] ${philReveal.isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-            <p className="text-xl md:text-5xl font-light leading-[1.3] md:leading-[1.1] tracking-tight text-white/80">{t.philosophy_text}</p>
+            <p className="text-lg md:text-2xl font-light leading-relaxed tracking-tight text-white/70">{t.philosophy_text}</p>
           </div>
         </div>
       </section>
@@ -143,7 +143,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
             </div>
             <div className="relative z-10 px-6 text-center reveal-up">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>

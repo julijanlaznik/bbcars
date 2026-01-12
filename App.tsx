@@ -217,10 +217,12 @@ const Layout: React.FC = () => {
         </button>
 
         {!isHome && (
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group reveal-down">
-             <img src="/logo.png" alt="BBCars" className="h-8 w-auto object-contain transition-transform group-hover:scale-110" onError={(e) => { (e.target as any).style.display='none'; (e.target as any).nextSibling.style.display='block'; }} />
-             <span className="hidden font-heading font-extrabold text-2xl tracking-tighter">BBCARS</span>
-          </Link>
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+            <Link to="/" className="flex items-center justify-center group pointer-events-auto reveal-down">
+               <img src="/logo.png" alt="BBCars" className="h-8 w-auto object-contain transition-transform group-hover:scale-110" onError={(e) => { (e.target as any).style.display='none'; (e.target as any).nextSibling.style.display='block'; }} />
+               <span className="hidden font-heading font-extrabold text-2xl tracking-tighter">BBCARS</span>
+            </Link>
+          </div>
         )}
 
         <button onClick={() => setIsSearchOpen(true)} className="group reveal-down delay-400 relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
