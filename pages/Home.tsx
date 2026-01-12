@@ -64,24 +64,25 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
           <img 
-            src="/hero-foto.webp" 
+            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
             className={`w-full h-full object-cover transition-all duration-[2s] ${heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
             alt="Porsche 911 GT3" 
             onLoad={() => setHeroLoaded(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10" />
+          {/* Jemný black gradient na levé straně pro čitelnost */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
         </div>
         <div className="relative z-20 w-full max-w-screen-2xl mx-auto pt-20">
           <div className="max-w-5xl">
             <h1 className={`mb-8 md:mb-10 uppercase leading-tight transition-all duration-1000 ${heroLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-              <span className="block text-xs md:text-xl tracking-[0.3em] font-[100] text-white/80 mb-2 md:mb-4 reveal-up delay-200">
+              <span className="block text-[10px] md:text-base tracking-[0.3em] font-[200] text-white/80 mb-2 md:mb-4 reveal-up delay-200">
                 {lang === 'CZ' ? 'Prodej luxusních a prémiových vozů' : 'Luxury and premium car sales'}
               </span>
               <span className="block text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter font-heading text-white reveal-up delay-400">BB CARS</span>
             </h1>
             <div className={heroLoaded ? 'reveal-up delay-700' : 'opacity-0'}>
               <Link to="/nabidka" className="inline-flex items-center group">
-                <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-white text-black group-hover:bg-[#dbad1e] transition-all">
+                <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-[#dbad1e] text-black group-hover:bg-white transition-all duration-500">
                   {lang === 'CZ' ? 'Zobrazit nabídku' : 'View inventory'}
                 </span>
               </Link>
@@ -143,7 +144,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
             </div>
             <div className="relative z-10 px-6 text-center reveal-up">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>
