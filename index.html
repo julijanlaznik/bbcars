@@ -14,16 +14,11 @@
     <meta property="og:description" content="Specializovaný prodejce luxusních vozů v ČR. Showroom Rokycany.">
     <meta property="og:image" content="https://www.bbcars.cz/logo.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="BBCars | Luxury Digital Showroom">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Organization Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -53,11 +48,46 @@
         }
         h1, h2, h3, .font-heading { font-family: 'Syne', sans-serif; }
         .scroll-smooth { scroll-behavior: smooth; }
-        .fade-in { animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+
+        /* --- ANIMATION SYSTEM --- */
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes revealDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes revealFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .reveal-up { 
+            animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            opacity: 0;
+        }
+        
+        .reveal-down { 
+            animation: revealDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            opacity: 0;
+        }
+
+        .reveal-fade {
+            animation: revealFade 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-1000 { animation-delay: 1000ms; }
+
         @keyframes slideProgress {
           from { width: 0%; }
           to { width: 100%; }
@@ -66,6 +96,12 @@
           animation: slideProgress 6s linear forwards;
           background-color: #dbad1e;
         }
+
+        /* Custom scrollbar for premium look */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb:hover { background: #dbad1e; }
     </style>
 <script type="importmap">
 {

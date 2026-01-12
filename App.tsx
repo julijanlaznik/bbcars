@@ -24,7 +24,6 @@ const SEOManager: React.FC = () => {
     let title = "BBCars | Prodej luxusních a prémiových vozů";
     let description = "Specializovaný prodejce luxusních vozů v ČR. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek. Showroom Rokycany.";
     
-    // Rozpoznání detailu auta pro dynamické SEO na nové cestě /auto/
     const carMatch = pathname.match(/\/auto\/([^\/]+)/);
     const isCarDetail = carMatch && carMatch[1];
 
@@ -144,7 +143,7 @@ const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
         <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12" /></svg>
       </button>
       
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-4xl reveal-up">
         <input 
           ref={inputRef}
           type="text" 
@@ -155,14 +154,15 @@ const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
         />
 
         <div className="mt-8 md:mt-12 space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-          {filteredCars.map(car => (
+          {filteredCars.map((car, idx) => (
             <button 
               key={car.id} 
               onClick={() => {
                 navigate(`/auto/${car.id}`);
                 onClose();
               }}
-              className="w-full flex items-center justify-between p-4 md:p-6 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all text-left"
+              className="w-full flex items-center justify-between p-4 md:p-6 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all text-left reveal-up"
+              style={{ animationDelay: `${idx * 100}ms` }}
             >
               <div className="flex items-center space-x-4 md:space-x-8">
                 <div className="w-16 md:w-24 aspect-video overflow-hidden border border-white/10">
@@ -208,7 +208,7 @@ const Layout: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-[#050505] text-white">
       <SEOManager />
       <header className={`fixed top-0 left-0 w-full z-[80] p-6 md:p-12 flex justify-between items-center transition-transform duration-500 ${showHeader || isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
-        <button onClick={() => setIsMenuOpen(true)} className="group flex items-center space-x-4 focus:outline-none">
+        <button onClick={() => setIsMenuOpen(true)} className="group flex items-center space-x-4 focus:outline-none reveal-down delay-200">
           <div className="flex flex-col items-start space-y-2">
             <span className="w-10 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
             <span className="w-6 h-[1.5px] bg-white group-hover:bg-[#dbad1e] transition-all"></span>
@@ -217,13 +217,13 @@ const Layout: React.FC = () => {
         </button>
 
         {!isHome && (
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group">
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group reveal-down">
              <img src="/logo.png" alt="BBCars" className="h-8 w-auto object-contain transition-transform group-hover:scale-110" onError={(e) => { (e.target as any).style.display='none'; (e.target as any).nextSibling.style.display='block'; }} />
              <span className="hidden font-heading font-extrabold text-2xl tracking-tighter">BBCARS</span>
           </Link>
         )}
 
-        <button onClick={() => setIsSearchOpen(true)} className="group relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
+        <button onClick={() => setIsSearchOpen(true)} className="group reveal-down delay-400 relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
           <svg className="w-5 h-5 md:w-6 md:h-6 text-white/50 group-hover:text-white transition-all transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -232,7 +232,6 @@ const Layout: React.FC = () => {
 
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
-      {/* Menu Overlay */}
       <aside className={`fixed top-0 left-0 h-full w-full md:w-[500px] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-16 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <button onClick={() => setIsMenuOpen(false)} className="mb-12 flex items-center space-x-4 opacity-30 hover:opacity-100 transition-opacity">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -248,8 +247,14 @@ const Layout: React.FC = () => {
             { to: "/o-nas", label: "O nás" },
             { to: "/sluzby", label: "Služby" },
             { to: "/kontakt", label: "Kontakt" },
-          ].map((link) => (
-            <Link key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)} className="text-3xl font-bold tracking-tight uppercase font-heading hover:text-[#dbad1e] transition-all">
+          ].map((link, idx) => (
+            <Link 
+              key={link.to} 
+              to={link.to} 
+              onClick={() => setIsMenuOpen(false)} 
+              className={`text-3xl font-bold tracking-tight uppercase font-heading hover:text-[#dbad1e] transition-all duration-500 ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              style={{ transitionDelay: `${isMenuOpen ? idx * 50 : 0}ms` }}
+            >
               {link.label}
             </Link>
           ))}
@@ -269,8 +274,6 @@ const Layout: React.FC = () => {
           <Route path="/pujcovna" element={<Rent lang="CZ" />} />
           <Route path="/podminky" element={<Terms lang="CZ" />} />
           <Route path="/soukromi" element={<Privacy lang="CZ" />} />
-          <Route path="/cs/*" element={<Navigate to="/" replace />} />
-          <Route path="/en/*" element={<Navigate to="/" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
