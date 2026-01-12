@@ -24,8 +24,8 @@ const SEOManager: React.FC = () => {
     let title = "BBCars | Prodej luxusních a prémiových vozů";
     let description = "Specializovaný prodejce luxusních vozů v ČR. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek. Showroom Rokycany.";
     
-    // Rozpoznání detailu auta pro dynamické SEO
-    const carMatch = pathname.match(/\/nabidka\/([^\/]+)/);
+    // Rozpoznání detailu auta pro dynamické SEO na nové cestě /auto/
+    const carMatch = pathname.match(/\/auto\/([^\/]+)/);
     const isCarDetail = carMatch && carMatch[1];
 
     if (isCarDetail) {
@@ -34,7 +34,6 @@ const SEOManager: React.FC = () => {
         title = `${car.brand} ${car.model} (${car.year}) | BBCars`;
         description = `${car.brand} ${car.model} na prodej. Nájezd ${car.km}, výkon ${car.powerKw}. Prověřený původ a špičkový stav v BBCars Rokycany.`;
         
-        // JSON-LD Product Schema
         const schema = {
           "@context": "https://schema.org/",
           "@type": "Product",
@@ -54,7 +53,6 @@ const SEOManager: React.FC = () => {
         updateJSONLD(schema);
       }
     } else {
-      // Ostatní stránky
       if (pathname === '/nabidka') {
         title = "Nabídka luxusních vozů | Kurátorský výběr | BBCars";
       } else if (pathname === '/o-nas') {
@@ -115,8 +113,80 @@ const ScrollToTop = () => {
   return null;
 };
 
+const SearchOverlay: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const [query, setQuery] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      setQuery('');
+    }
+  }, [isOpen]);
+
+  const filteredCars = useMemo(() => {
+    if (!query.trim()) return [];
+    return cars.filter(c => 
+      c.brand.toLowerCase().includes(query.toLowerCase()) || 
+      c.model.toLowerCase().includes(query.toLowerCase())
+    ).slice(0, 5);
+  }, [query]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center px-8 animate-in fade-in duration-500">
+      <button onClick={onClose} className="absolute top-6 right-6 md:top-12 md:right-12 text-white/40 hover:text-white transition-colors">
+        <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+      
+      <div className="w-full max-w-4xl">
+        <input 
+          ref={inputRef}
+          type="text" 
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Hledat vůz..."
+          className="w-full bg-transparent border-b border-white/10 py-6 md:py-8 text-2xl md:text-6xl font-bold uppercase tracking-tighter outline-none placeholder:text-white/10 focus:border-[#dbad1e] transition-all text-center"
+        />
+
+        <div className="mt-8 md:mt-12 space-y-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+          {filteredCars.map(car => (
+            <button 
+              key={car.id} 
+              onClick={() => {
+                navigate(`/auto/${car.id}`);
+                onClose();
+              }}
+              className="w-full flex items-center justify-between p-4 md:p-6 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 transition-all text-left"
+            >
+              <div className="flex items-center space-x-4 md:space-x-8">
+                <div className="w-16 md:w-24 aspect-video overflow-hidden border border-white/10">
+                  <img src={car.image} alt={car.model} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                   <p className="text-[8px] md:text-[9px] uppercase tracking-widest text-white/30 font-bold mb-1">{car.brand}</p>
+                   <p className="text-base md:text-xl font-bold uppercase tracking-tight">{car.model}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-sm md:text-lg font-bold tracking-tighter">{car.price}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { pathname } = useLocation();
@@ -153,8 +223,14 @@ const Layout: React.FC = () => {
           </Link>
         )}
 
-        <Link to="/nabidka" className="hidden md:block text-[10px] font-bold uppercase tracking-[0.4em] hover:text-[#dbad1e] transition-colors">NABÍDKA</Link>
+        <button onClick={() => setIsSearchOpen(true)} className="group relative flex items-center h-12 w-12 justify-center focus:outline-none bg-white/0 hover:bg-white/5 rounded-full transition-all">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-white/50 group-hover:text-white transition-all transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
       </header>
+
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {/* Menu Overlay */}
       <aside className={`fixed top-0 left-0 h-full w-full md:w-[500px] bg-black z-[110] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] p-8 md:p-16 flex flex-col border-r border-white/5 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -184,7 +260,7 @@ const Layout: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home lang="CZ" />} />
           <Route path="/nabidka" element={<Inventory lang="CZ" />} />
-          <Route path="/nabidka/:id" element={<CarDetail lang="CZ" />} />
+          <Route path="/auto/:id" element={<CarDetail lang="CZ" />} />
           <Route path="/o-nas" element={<AboutUs lang="CZ" />} />
           <Route path="/kontakt" element={<Contact lang="CZ" />} />
           <Route path="/vuz-na-prani" element={<CustomOrder lang="CZ" />} />
@@ -193,7 +269,6 @@ const Layout: React.FC = () => {
           <Route path="/pujcovna" element={<Rent lang="CZ" />} />
           <Route path="/podminky" element={<Terms lang="CZ" />} />
           <Route path="/soukromi" element={<Privacy lang="CZ" />} />
-          {/* SEO Redirects pro staré cesty */}
           <Route path="/cs/*" element={<Navigate to="/" replace />} />
           <Route path="/en/*" element={<Navigate to="/" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />

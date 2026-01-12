@@ -45,7 +45,6 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
   const [heroLoaded, setHeroLoaded] = useState(false);
   const t = translations[lang];
   const featuredCars = cars.slice(0, 6);
-  const lPath = (path: string) => `/${lang.toLowerCase()}${path}`;
   const googleMapsUrl = "https://www.google.com/maps/dir/?api=1&destination=B%26B+Cars+4You+s.r.o.%2C+Plze%C5%88sk%C3%A1+968%2C+337+01+Rokycany+1";
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.479507817088!2d13.5855263!3d49.7423018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470ae9a9c7382f71%3A0x8892f3d242699042!2sPlze%C5%88sk%C3%A1%20968%2C%20337%2001%20Rokycany!5e1!3m2!1scs!2scz!4v1715600000000!5m2!1scs!2scz&maptype=satellite";
 
@@ -63,7 +62,6 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/15 to-transparent z-10" />
-          <div className="absolute inset-0 bg-black/10 z-0" />
         </div>
         <div className="relative z-20 w-full max-w-screen-2xl mx-auto pt-20">
           <div className="max-w-5xl">
@@ -73,7 +71,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
               </span>
               <span className="block text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter font-heading text-white">BB CARS</span>
             </h1>
-            <Link to={lPath("/inventory")} className="inline-flex items-center group">
+            <Link to="/nabidka" className="inline-flex items-center group">
               <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-white text-black group-hover:bg-[#dbad1e] transition-all">
                 {lang === 'CZ' ? 'Zobrazit nabídku' : 'View inventory'}
               </span>
@@ -93,7 +91,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="bg-black pt-2 md:pt-10 pb-20 md:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[2px] md:gap-[10px] w-full">
           {featuredCars.map((car) => (
-            <Link key={car.id} to={lPath(`/auto/${car.id}`)} className="group relative flex flex-col bg-[#080808] pb-10">
+            <Link key={car.id} to={`/auto/${car.id}`} className="group relative flex flex-col bg-[#080808] pb-10">
               <div className="relative aspect-video overflow-hidden bg-[#0a0a0a] mb-6 md:mb-10">
                 <img src={car.image} alt={`${car.brand} ${car.model} prodej ČR`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               </div>
@@ -117,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="w-full lg:w-1/2 p-10 md:p-20 flex items-center">
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">{t.custom_order_card_title}</h2>
-            <Link to={lPath("/custom-order")} className="inline-block text-[9px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-16 border border-white hover:border-[#dbad1e] hover:text-[#dbad1e] transition-all">{t.custom_order_card_cta}</Link>
+            <Link to="/vuz-na-prani" className="inline-block text-[9px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-16 border border-white hover:border-[#dbad1e] hover:text-[#dbad1e] transition-all">{t.custom_order_card_cta}</Link>
           </div>
         </div>
       </section>

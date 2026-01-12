@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBCars | Luxury Digital Showroom</title>
+    <meta name="description" content="Specializovaný prodejce luxusních vozů v ČR. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek. Showroom Rokycany.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bbcars.cz/">
+    <meta property="og:title" content="BBCars | Luxury Digital Showroom">
+    <meta property="og:description" content="Specializovaný prodejce luxusních vozů v ČR. Showroom Rokycany.">
+    <meta property="og:image" content="https://www.bbcars.cz/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.bbcars.cz/">
+    <meta property="twitter:title" content="BBCars | Luxury Digital Showroom">
+    <meta property="twitter:description" content="Specializovaný prodejce luxusních vozů v ČR. Showroom Rokycany.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "BBCars",
+      "url": "https://www.bbcars.cz",
+      "logo": "https://www.bbcars.cz/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Plzeňská 968",
+        "addressLocality": "Rokycany",
+        "postalCode": "33701",
+        "addressCountry": "CZ"
+      },
+      "telephone": "+420605034911",
+      "priceRange": "$$$$"
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Syne', sans-serif;
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .fade-in {
+            animation: fadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideProgress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+        .progress-bar-active {
+          animation: slideProgress 6s linear forwards;
+          background-color: #dbad1e;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?deps=react@19.0.0,react-dom@19.0.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

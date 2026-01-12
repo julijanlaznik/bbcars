@@ -24,8 +24,6 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
   const [yearFrom, setYearFrom] = useState<string>('');
   const [yearTo, setYearTo] = useState<string>('');
 
-  const lPath = (path: string) => `/${lang.toLowerCase()}${path}`;
-
   // Helper for formatting prices in dropdown
   const formatPrice = (val: number) => new Intl.NumberFormat('cs-CZ').format(val) + ' Kč';
 
@@ -210,7 +208,7 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
           {displayCars.length > 0 ? (
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-[10px]">
               {displayCars.map((car) => (
-                <Link key={car.id} to={lPath(`/auto/${car.id}`)} className="group relative flex flex-col bg-[#080808] pb-10 border border-transparent hover:border-white/5 transition-all duration-700">
+                <Link key={car.id} to={`/auto/${car.id}`} className="group relative flex flex-col bg-[#080808] pb-10 border border-transparent hover:border-white/5 transition-all duration-700">
                   <div className="relative aspect-video overflow-hidden bg-[#0a0a0a] mb-8">
                     <img src={car.image} alt={`${car.brand} ${car.model}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                   </div>
