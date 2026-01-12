@@ -21,7 +21,7 @@ const SEOManager: React.FC<{ lang: Language }> = ({ lang }) => {
   const { pathname } = useLocation();
   
   useEffect(() => {
-    let title = "BBCars | Luxury Digital Showroom";
+    let title = "BBCars | Prodej luxusních vozů";
     let description = lang === 'CZ' 
       ? "Specializovaný prodejce luxusních a prémiových vozů. Kurátorský výběr Porsche, Ferrari, Bentley a dalších exkluzivních značek v ČR."
       : "Specialized dealer of luxury and premium cars. Curated selection of Porsche, Ferrari, Bentley and other exclusive brands in CZ.";
