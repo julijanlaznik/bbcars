@@ -64,7 +64,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
+            src="/hero-foto.webp" 
             className={`w-full h-full object-cover transition-all duration-[2s] ${heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
             alt="Porsche 911 GT3" 
             onLoad={() => setHeroLoaded(true)}
@@ -110,7 +110,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative flex flex-col lg:flex-row min-h-[50vh] md:min-h-[70vh] border-t border-white/5 bg-black" ref={customReveal.ref}>
         <div className="w-full lg:w-1/2 relative h-[35vh] md:h-[40vh] lg:h-auto overflow-hidden">
           <img 
-            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2400" 
+            src="/showroom.png" 
             className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${customReveal.isVisible ? 'scale-100 opacity-40' : 'scale-110 opacity-0'}`} 
             alt="Custom order" 
           />
