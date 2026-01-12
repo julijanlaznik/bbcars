@@ -151,7 +151,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-20 grayscale" alt="BBCars Showroom Rokycany" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-20 grayscale" alt="BBCars Showroom Rokycany" />
             </div>
             <div className="relative z-10 px-6 text-center">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>
