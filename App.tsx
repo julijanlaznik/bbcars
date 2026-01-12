@@ -241,7 +241,16 @@ const Layout: React.FC<{ lang: Language; setLang: (l: Language) => void }> = ({ 
             to={lPath("")} 
             className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center group"
           >
-            <span className="font-heading font-extrabold text-white text-2xl md:text-3xl tracking-tighter scale-y-90 select-none">BB CARS</span>
+            <img 
+              src="/logo.png" 
+              alt="BBCars Logo" 
+              className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+              onError={(e) => {
+                (e.target as any).style.display = 'none';
+                (e.target as any).nextSibling.style.display = 'block';
+              }}
+            />
+            <span className="hidden font-heading font-extrabold text-white text-2xl md:text-3xl tracking-tighter scale-y-90 select-none">BB CARS</span>
           </Link>
         )}
 
