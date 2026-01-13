@@ -34,6 +34,9 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
   const [priceTo, setPriceTo] = useState<string>('');
   const [yearFrom, setYearFrom] = useState<string>('');
   const [yearTo, setYearTo] = useState<string>('');
+  
+  // State pro mobilní rozbalování filtrů
+  const [isFilterExpanded, setIsFilterExpanded] = useState(false);
 
   const formatPrice = (val: number) => new Intl.NumberFormat('cs-CZ').format(val) + ' Kč';
 
@@ -84,7 +87,7 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
 
   return (
     <div className="pt-40 pb-20 px-8 md:px-12 lg:px-20 max-w-[1920px] mx-auto min-h-screen">
-      <div className="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8 reveal-up">
+      <div className="flex flex-col md:flex-row justify-between items-baseline mb-12 lg:mb-20 gap-8 reveal-up">
         <div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase font-heading mb-4 leading-none">
             {t.nav_inventory}
@@ -95,7 +98,7 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
         </div>
         
         <div className="flex items-center space-x-8 text-[11px] uppercase tracking-[0.3em] font-bold">
-          <span className="text-white/10">{lang === 'CZ' ? 'SEŘADIT PODLE:' : 'SORT BY:'}</span>
+          <span className="text-white/10 hidden sm:inline">{lang === 'CZ' ? 'SEŘADIT PODLE:' : 'SORT BY:'}</span>
           <button onClick={() => setSort('price_asc')} className={`hover:text-white transition-colors ${sort === 'price_asc' ? 'text-[#dbad1e]' : 'text-white/40'}`}>
             {lang === 'CZ' ? 'NEJLEVNĚJŠÍ' : 'CHEAPEST'}
           </button>
@@ -105,9 +108,26 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-20">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-20">
         <aside className="w-full lg:w-80 flex-shrink-0 reveal-up delay-200">
-          <div className="lg:sticky lg:top-40 space-y-10">
+          {/* Mobilní tlačítko filtru */}
+          <button 
+            onClick={() => setIsFilterExpanded(!isFilterExpanded)}
+            className="w-full lg:hidden flex items-center justify-between border border-white/10 px-6 py-5 hover:bg-white/5 transition-all mb-4"
+          >
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em]">
+              {isFilterExpanded ? (lang === 'CZ' ? 'ZAVŘÍT FILTR' : 'CLOSE FILTER') : (lang === 'CZ' ? 'FILTROVAT NABÍDKU' : 'FILTER INVENTORY')}
+            </span>
+            <svg 
+              className={`w-4 h-4 transition-transform duration-500 ${isFilterExpanded ? 'rotate-180' : ''}`} 
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          {/* Kontejner s filtry: na desktopu vždy, na mobilu dle stavu */}
+          <div className={`${isFilterExpanded ? 'max-h-[1000px] opacity-100 mb-12' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100'} overflow-hidden lg:overflow-visible transition-all duration-700 ease-in-out lg:sticky lg:top-40 space-y-10`}>
             <InventorySelect value={selectedBrand} onChange={setSelectedBrand} options={brands} placeholder="ZNAČKA" />
             <InventorySelect value={selectedModel} onChange={setSelectedModel} options={models} placeholder="MODEL" />
             <InventorySelect value={selectedBody} onChange={setSelectedBody} options={bodyTypes} placeholder="KAROSERIE" />
