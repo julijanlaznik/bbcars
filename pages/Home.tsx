@@ -64,7 +64,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
+            src="/hero-foto.webp" 
             className={`w-full h-full object-cover transition-all duration-[2s] ${heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
             alt="Porsche 911 GT3" 
             onLoad={() => setHeroLoaded(true)}
