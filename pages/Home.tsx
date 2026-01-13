@@ -110,7 +110,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative flex flex-col lg:flex-row min-h-[50vh] md:min-h-[70vh] border-t border-white/5 bg-black" ref={customReveal.ref}>
         <div className="w-full lg:w-1/2 relative h-[35vh] md:h-[40vh] lg:h-auto overflow-hidden">
           <img 
-            src="https://unsplash.com/photos/black-bmw-m-3-on-road-during-daytime-c7Gay8ttJS0" 
+            src="/vuz-na-objednavku.png" 
             className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${customReveal.isVisible ? 'scale-100 opacity-40' : 'scale-110 opacity-0'}`} 
             alt="Custom order" 
           />
