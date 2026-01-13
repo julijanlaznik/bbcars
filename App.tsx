@@ -219,7 +219,7 @@ const Layout: React.FC = () => {
         {!isHome && (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
             <Link to="/" className="flex items-center justify-center group pointer-events-auto reveal-down">
-               <img src="/logo.png" alt="BBCars" className="h-8 w-auto object-contain transition-transform group-hover:scale-110" onError={(e) => { (e.target as any).style.display='none'; (e.target as any).nextSibling.style.display='block'; }} />
+               <img src="/logo.png" alt="BBCars" className="h-4 md:h-8 w-auto object-contain transition-transform group-hover:scale-110" onError={(e) => { (e.target as any).style.display='none'; (e.target as any).nextSibling.style.display='block'; }} />
                <span className="hidden font-heading font-extrabold text-2xl tracking-tighter">BBCARS</span>
             </Link>
           </div>
