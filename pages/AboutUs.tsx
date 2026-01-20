@@ -45,7 +45,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" 
+            src="/showroom.png" 
             className="w-full h-full object-cover grayscale opacity-20 scale-110 transition-transform duration-[10s] ease-out hover:scale-100"
             alt="BBCars Atmosphere"
           />
@@ -99,7 +99,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
             {/* Founder 1 */}
             <div className={`bg-[#050505] p-12 flex flex-col items-center text-center group transition-all duration-[1200ms] delay-100 cubic-bezier(0.34, 1.56, 0.64, 1) ${teamReveal.isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-75'}`}>
               <div className="w-48 h-48 rounded-full overflow-hidden mb-10 grayscale group-hover:grayscale-0 transition-all duration-1000 border border-white/10 relative">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jakub Buršík" />
+                <img src="#" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jakub Buršík" />
                 <div className="absolute inset-0 bg-[#FACC15]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
               <p className="text-[9px] uppercase tracking-[0.4em] text-white/20 mb-2 font-bold">FOUNDER & CEO</p>
@@ -112,7 +112,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
             {/* Founder 2 */}
             <div className={`bg-[#050505] p-12 flex flex-col items-center text-center group transition-all duration-[1200ms] delay-300 cubic-bezier(0.34, 1.56, 0.64, 1) ${teamReveal.isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-75'}`}>
               <div className="w-48 h-48 rounded-full overflow-hidden mb-10 grayscale group-hover:grayscale-0 transition-all duration-1000 border border-white/10 relative">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jan Buršík" />
+                <img src="#" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jan Buršík" />
                 <div className="absolute inset-0 bg-[#FACC15]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
               <p className="text-[9px] uppercase tracking-[0.4em] text-white/20 mb-2 font-bold">FOUNDER & SALES</p>
