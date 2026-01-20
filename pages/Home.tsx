@@ -143,7 +143,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="py-24 md:py-40 px-6 md:px-20 bg-black border-t border-white/5" ref={statReveal.ref}>
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-0">
           {[
-            { end: 15, suffix: "", label: lang === 'CZ' ? 'Let na trhu' : 'Years on market' },
+            { end: 17, suffix: "", label: lang === 'CZ' ? 'Let na trhu' : 'Years on market' },
             { end: 500, suffix: "+", label: lang === 'CZ' ? 'Prodaných vozů' : 'Cars sold' },
             { end: 100, suffix: "%", label: lang === 'CZ' ? 'Garance původu' : 'Origin guarantee' }
           ].map((stat, i) => (
