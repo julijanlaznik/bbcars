@@ -49,10 +49,24 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ lang }) => {
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [currentHeroImg, setCurrentHeroImg] = useState(0);
   const t = translations[lang];
   const featuredCars = cars.slice(0, 6);
   const googleMapsUrl = "https://www.google.com/maps/dir/?api=1&destination=B%26B+Cars+4You+s.r.o.%2C+Plze%C5%88sk%C3%A1+968%2C+337+01+Rokycany+1";
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.479507817088!2d13.5855263!3d49.7423018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470ae9a9c7382f71%3A0x8892f3d242699042!2sPlze%C5%88sk%C3%A1%20968%2C%20337%2001%20Rokycany!5e1!3m2!1scs!2scz!4v1715600000000!5m2!1scs!2scz&maptype=satellite";
+
+  const heroImages = [
+    "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&q=80&w=2000"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroImg((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   const philReveal = useReveal();
   const customReveal = useReveal();
@@ -60,15 +74,18 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
   return (
     <div className="overflow-x-hidden">
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION WITH AUTOMATIC SLIDER --- */}
       <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
-            className={`w-full h-full object-cover transition-all duration-[2s] ${heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
-            alt="Porsche 911 GT3" 
-            onLoad={() => setHeroLoaded(true)}
-          />
+          {heroImages.map((img, idx) => (
+            <img 
+              key={idx}
+              src={img} 
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] ${idx === currentHeroImg ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
+              alt={`Hero slide ${idx}`} 
+              onLoad={() => idx === 0 && setHeroLoaded(true)}
+            />
+          ))}
           {/* Jemný black gradient na levé straně pro čitelnost */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
         </div>
@@ -144,7 +161,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
             </div>
             <div className="relative z-10 px-6 text-center reveal-up">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>
