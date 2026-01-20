@@ -64,7 +64,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative h-screen flex items-center px-6 md:px-20 overflow-hidden bg-black">
         <div className="absolute inset-0">
           <img 
-            src="/hero-foto.webp" 
+            src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000" 
             className={`w-full h-full object-cover transition-all duration-[2s] ${heroLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} 
             alt="Porsche 911 GT3" 
             onLoad={() => setHeroLoaded(true)}
@@ -110,7 +110,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <section className="relative flex flex-col lg:flex-row min-h-[50vh] md:min-h-[70vh] border-t border-white/5 bg-black" ref={customReveal.ref}>
         <div className="w-full lg:w-1/2 relative h-[35vh] md:h-[40vh] lg:h-auto overflow-hidden">
           <img 
-            src="/vuz-na-objednavku.png" 
+            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2400" 
             className={`w-full h-full object-cover grayscale transition-all duration-[2s] ${customReveal.isVisible ? 'scale-100 opacity-40' : 'scale-110 opacity-0'}`} 
             alt="Custom order" 
           />
@@ -144,7 +144,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[700px]">
           <div className="relative w-full lg:w-1/2 h-[400px] md:h-[500px] lg:h-auto flex items-center justify-center">
             <div className="absolute inset-0">
-              <img src="/showroom.png" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
+              <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=90&w=2400" className="w-full h-full object-cover opacity-10 grayscale" alt="Showroom" />
             </div>
             <div className="relative z-10 px-6 text-center reveal-up">
               <h2 className="text-3xl md:text-6xl font-bold uppercase font-heading mb-6 md:mb-8 leading-none tracking-tighter">Navštivte náš showroom</h2>
@@ -161,7 +161,8 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
   );
 };
 
-const CarCard = ({ car, index }: { car: any, index: number }) => {
+// Fix for CarCard type error: Property 'key' does not exist on type '{ car: any; index: number; }'
+const CarCard: React.FC<{ car: any, index: number }> = ({ car, index }) => {
   const { ref, isVisible } = useReveal();
   return (
     <Link 

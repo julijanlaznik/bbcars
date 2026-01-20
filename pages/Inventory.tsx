@@ -1,5 +1,5 @@
 
-import { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { translations } from '../i18n/translations';
@@ -169,7 +169,8 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
   );
 };
 
-const CarItem = ({ car, index, t }: { car: any, index: number, t: any }) => {
+// Fix for CarItem type error: Property 'key' does not exist on type '{ car: any; index: number; t: any; }'
+const CarItem: React.FC<{ car: any, index: number, t: any }> = ({ car, index, t }) => {
   const { ref, isVisible } = useReveal();
   return (
     <Link 
