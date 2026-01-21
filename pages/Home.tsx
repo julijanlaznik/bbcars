@@ -101,7 +101,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             <div className={heroLoaded ? 'reveal-up delay-700' : 'opacity-0'}>
               <Link to="/nabidka" className="inline-flex items-center group">
                 <span className="text-[10px] uppercase tracking-[0.6em] font-bold py-4 md:py-5 px-10 md:px-14 bg-[#dbad1e] text-black group-hover:bg-white transition-all duration-500">
-                  {lang === 'CZ' ? 'Zobrazit nabídku' : 'View inventory'}
+                  {lang === 'CZ' ? 'Nabídka vozů' : 'View inventory'}
                 </span>
               </Link>
             </div>
