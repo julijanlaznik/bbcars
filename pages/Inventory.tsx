@@ -35,7 +35,6 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
   const [yearFrom, setYearFrom] = useState<string>('');
   const [yearTo, setYearTo] = useState<string>('');
   
-  // State pro mobilní rozbalování filtrů
   const [isFilterExpanded, setIsFilterExpanded] = useState(false);
 
   const formatPrice = (val: number) => new Intl.NumberFormat('cs-CZ').format(val) + ' Kč';
@@ -110,7 +109,6 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
 
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-20">
         <aside className="w-full lg:w-80 flex-shrink-0 reveal-up delay-200">
-          {/* Mobilní tlačítko filtru */}
           <button 
             onClick={() => setIsFilterExpanded(!isFilterExpanded)}
             className="w-full lg:hidden flex items-center justify-between border border-white/10 px-6 py-5 hover:bg-white/5 transition-all mb-4"
@@ -126,7 +124,6 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
             </svg>
           </button>
 
-          {/* Kontejner s filtry: na desktopu vždy, na mobilu dle stavu */}
           <div className={`${isFilterExpanded ? 'max-h-[1000px] opacity-100 mb-12' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100'} overflow-hidden lg:overflow-visible transition-all duration-700 ease-in-out lg:sticky lg:top-40 space-y-10`}>
             <InventorySelect value={selectedBrand} onChange={setSelectedBrand} options={brands} placeholder="ZNAČKA" />
             <InventorySelect value={selectedModel} onChange={setSelectedModel} options={models} placeholder="MODEL" />
@@ -169,7 +166,6 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
   );
 };
 
-// Fix for CarItem type error: Property 'key' does not exist on type '{ car: any; index: number; t: any; }'
 const CarItem: React.FC<{ car: any, index: number, t: any }> = ({ car, index, t }) => {
   const { ref, isVisible } = useReveal();
   return (
@@ -182,13 +178,21 @@ const CarItem: React.FC<{ car: any, index: number, t: any }> = ({ car, index, t 
       <div className="relative aspect-video overflow-hidden bg-[#0a0a0a] mb-8">
         <img src={car.image} alt={car.model} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
       </div>
-      <div className="flex flex-col px-8 md:px-12">
-        <div className="mb-8">
-          <h3 className="text-xl md:text-2xl font-bold tracking-tighter uppercase font-heading group-hover:translate-x-1 transition-transform duration-500 leading-tight">
-            <span className="block opacity-20 text-[0.45em] tracking-[0.2em] mb-2 font-bold">{car.brand}</span>
-            {car.model}
+      <div className="flex flex-col px-8 md:px-12 relative overflow-hidden">
+        <div className="mb-2 flex flex-nowrap justify-between items-baseline gap-2 sm:gap-4">
+          <h3 className="text-[15px] sm:text-xl lg:text-2xl font-bold tracking-tighter uppercase font-heading group-hover:text-[#dbad1e] transition-colors duration-500 leading-tight truncate">
+            {car.brand} {car.model}
           </h3>
+          <p className="text-[15px] sm:text-xl lg:text-2xl font-bold tracking-tighter text-[#dbad1e] whitespace-nowrap flex-shrink-0">
+            {car.price}
+          </p>
         </div>
+        <div className="flex items-center gap-3 mb-10">
+          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium text-white/30 truncate">
+            {car.km} / {car.equipment[0] || 'Exclusive'} / {car.bodyType}
+          </p>
+        </div>
+        
         <div className="grid grid-cols-3 gap-y-8 border-t border-white/5 pt-8">
           <div>
             <p className="text-[7px] uppercase tracking-[0.3em] text-white/20 mb-1.5 font-bold">{t.label_in_service}</p>
@@ -203,11 +207,9 @@ const CarItem: React.FC<{ car: any, index: number, t: any }> = ({ car, index, t 
             <p className="text-[11px] font-bold tracking-widest text-white/80">{car.year}</p>
           </div>
         </div>
-        <div className="mt-12 flex justify-between items-end">
-          <div className="text-left">
-             <p className="text-2xl font-bold tracking-tighter text-white group-hover:text-[#dbad1e] transition-colors">{car.price}</p>
-          </div>
-          <div className="opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700">
+        
+        <div className="mt-8 flex justify-end">
+          <div className="opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700 flex-shrink-0">
             <svg className="w-8 h-8 text-[#dbad1e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </div>
         </div>

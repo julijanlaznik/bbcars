@@ -18,7 +18,6 @@ const CustomOrder: React.FC<CustomOrderProps> = ({ lang }) => {
 
   return (
     <div className="fade-in bg-[#050505]">
-      {/* --- FOTO: ÚVODNÍ FOTKA SEKCE NA OBJEDNÁVKU --- */}
       <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
         <img 
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=100&w=2400" 
@@ -32,10 +31,10 @@ const CustomOrder: React.FC<CustomOrderProps> = ({ lang }) => {
         <div className="max-w-screen-2xl mx-auto">
           
           <header className="mb-24">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase font-heading leading-none mb-8">
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter uppercase font-heading leading-none mb-8">
               {t.nav_custom_order}
             </h1>
-            <p className="text-lg md:text-2xl font-light tracking-tight text-white/40 max-w-2xl leading-relaxed">
+            <p className="text-lg md:text-3xl font-light tracking-tight text-white/40 max-w-3xl leading-relaxed">
               {lang === 'CZ' 
                 ? 'Pokud váš vysněný vůz v naší aktuální nabídce chybí, vyhledáme jej pro vás napříč celou Evropou. S garantovaným původem i stavem.'
                 : 'If your dream car is missing from our current inventory, we will find it for you across all of Europe. With guaranteed origin and condition.'}
@@ -45,24 +44,21 @@ const CustomOrder: React.FC<CustomOrderProps> = ({ lang }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 py-24 border-t border-white/5">
             
             <div className="space-y-20">
-              <div>
-                <h2 className="text-[11px] uppercase tracking-[0.5em] text-white/30 mb-12 font-bold">PROCES VÝBĚRU</h2>
-                <div className="space-y-12">
-                  {[
-                    { id: '01', title: 'Konzultace', text: 'Společně definujeme přesnou specifikaci, rozpočet a vaše priority. Každý detail je pro nás klíčový.' },
-                    { id: '02', title: 'Vyhledávání', text: 'Využíváme naše evropské sítě a neveřejné nabídky prověřených partnerů.' },
-                    { id: '03', title: 'Prověrka', text: 'Každý vůz osobně prověřujeme na místě. Kontrolujeme historii, autenticitu a technickou integritu.' },
-                    { id: '04', title: 'Předání', text: 'Zajistíme dovoz, administrativu a vůz vám předáme v našem showroomu v perfektním stavu.' }
-                  ].map((step, idx) => (
-                    <div key={idx} className="flex items-start space-x-8 group">
-                      <span className="text-2xl font-heading font-medium opacity-20 group-hover:opacity-100 group-hover:text-[#dbad1e] transition-all duration-500 tabular-nums">{step.id}</span>
-                      <div>
-                        <h3 className="text-[15px] font-bold mb-3 uppercase tracking-widest">{step.title}</h3>
-                        <p className="text-white/40 text-[16px] font-light leading-relaxed max-w-sm">{step.text}</p>
-                      </div>
+              <div className="space-y-12 pt-8">
+                {[
+                  { id: '01', title: 'Konzultace', text: 'Společně definujeme přesnou specifikaci, rozpočet a vaše priority. Každý detail je pro nás klíčový.' },
+                  { id: '02', title: 'Vyhledávání', text: 'Využíváme naše evropské sítě a neveřejné nabídky prověřených partnerů.' },
+                  { id: '03', title: 'Prověrka', text: 'Každý vůz osobně prověřujeme na místě. Kontrolujeme historii, autenticitu a technickou integritu.' },
+                  { id: '04', title: 'Předání', text: 'Zajistíme dovoz, administrativu a vůz vám předáme v našem showroomu v perfektním stavu.' }
+                ].map((step, idx) => (
+                  <div key={idx} className="flex items-start space-x-8 group">
+                    <span className="text-2xl font-heading font-medium opacity-20 group-hover:opacity-100 group-hover:text-[#dbad1e] transition-all duration-500 tabular-nums">{step.id}</span>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-3 uppercase tracking-tighter font-heading">{step.title}</h3>
+                      <p className="text-white/40 text-lg font-light leading-relaxed max-w-md">{step.text}</p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
             
@@ -93,26 +89,22 @@ const CustomOrder: React.FC<CustomOrderProps> = ({ lang }) => {
                     <form onSubmit={handleSubmit} className="space-y-12">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div className="group border-b border-white/20 pb-2 focus-within:border-[#dbad1e] transition-all duration-500">
-                          <label className="block text-[11px] uppercase tracking-[0.4em] text-white/60 mb-3 font-bold group-focus-within:text-[#dbad1e] transition-colors">EMAIL</label>
-                          <input required type="email" placeholder="vas@email.cz" className="w-full bg-transparent outline-none text-xl font-light placeholder:text-white/10 py-1" />
+                          <input required type="email" placeholder="E-MAIL" className="w-full bg-transparent outline-none text-xl font-light py-1" />
                         </div>
                         <div className="group border-b border-white/20 pb-2 focus-within:border-[#dbad1e] transition-all duration-500">
-                          <label className="block text-[11px] uppercase tracking-[0.4em] text-white/60 mb-3 font-bold group-focus-within:text-[#dbad1e] transition-colors">TELEFON</label>
-                          <input required type="tel" placeholder="+420 000 000 000" className="w-full bg-transparent outline-none text-xl font-light placeholder:text-white/10 py-1" />
+                          <input required type="tel" placeholder="TELEFON" className="w-full bg-transparent outline-none text-xl font-light py-1" />
                         </div>
                       </div>
 
                       <div className="group border-b border-white/20 pb-2 focus-within:border-[#dbad1e] transition-all duration-500">
-                        <label className="block text-[11px] uppercase tracking-[0.4em] text-white/60 mb-3 font-bold group-focus-within:text-[#dbad1e] transition-colors">ZNAČKA A MODEL</label>
-                        <input required type="text" placeholder="Např. Bentley Continental GT" className="w-full bg-transparent outline-none text-xl font-light placeholder:text-white/10 py-1" />
+                        <input required type="text" placeholder="ZNAČKA A MODEL" className="w-full bg-transparent outline-none text-xl font-light py-1" />
                       </div>
 
                       <div className="group border-b border-white/20 pb-2 focus-within:border-[#dbad1e] transition-all duration-500">
-                        <label className="block text-[11px] uppercase tracking-[0.4em] text-white/60 mb-3 font-bold group-focus-within:text-[#dbad1e] transition-colors">POZNÁMKA K VÝBAVĚ</label>
                         <textarea 
                           rows={3} 
-                          placeholder="Barva, interiér, maximální nájezd..." 
-                          className="w-full bg-transparent outline-none text-xl font-light placeholder:text-white/10 resize-none pt-1"
+                          placeholder="POZNÁMKA K VÝBAVĚ" 
+                          className="w-full bg-transparent outline-none text-xl font-light resize-none pt-1"
                         />
                       </div>
 

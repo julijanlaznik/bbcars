@@ -1,6 +1,16 @@
 
 export type Language = 'CZ' | 'EN';
 
+export interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  image: string;
+  author: string;
+}
+
 export interface Car {
   id: string;
   brand: string;
@@ -20,6 +30,10 @@ export interface Car {
   story: {
     CZ: string;
     EN: string;
+  };
+  detailedDescription?: {
+    CZ: string[];
+    EN: string[];
   };
   emotionalHeadline: {
     CZ: string;

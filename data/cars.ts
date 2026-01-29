@@ -28,6 +28,28 @@ export const cars: Car[] = [
     engineCapacity: '3 996 ccm',
     powerKw: '375 kW',
     drivetrain: '2x4 (RWD)',
+    detailedDescription: {
+      CZ: [
+        "Atmosférický motor 4.0L Boxer s omezovačem v 9 000 ot/min",
+        "7stupňová dvouspojková převodovka PDK se zkrácenými převody",
+        "Aerodynamický paket Swan-neck se zvýšeným přítlakem o 50 %",
+        "Přední náprava s dvojitými příčnými rameny odvozená od RSR",
+        "Karbon-keramické brzdy (PCCB) se žlutými třmeny",
+        "Skořepinová sedadla z CFRP potažená Race-Tex tkaninou",
+        "Paket Chrono včetně přípravy pro Laptrigger",
+        "Systém natáčení zadní nápravy pro maximální agilitu"
+      ],
+      EN: [
+        "Naturally aspirated 4.0L Flat-6 engine with 9,000 RPM redline",
+        "7-speed PDK dual-clutch transmission with short ratios",
+        "Swan-neck rear wing with 50% increased downforce",
+        "Double-wishbone front suspension derived from the RSR",
+        "Porsche Ceramic Composite Brakes (PCCB) with yellow calipers",
+        "Full bucket seats in CFRP with Race-Tex upholstery",
+        "Chrono Package including laptrigger preparation",
+        "Rear-axle steering system for maximum agility"
+      ]
+    },
     emotionalHeadline: { CZ: 'Technická specifikace vozu', EN: 'Technical specification' },
     story: { CZ: 'Vůz v perfektním technickém stavu, po prvním majiteli.', EN: 'Vehicle in perfect technical condition, single owner.' },
     specs: { engine: '4.0L Flat-6', power: '510 HP', transmission: '7-speed PDK', fuel: 'Benzín' },
@@ -51,6 +73,28 @@ export const cars: Car[] = [
     engineCapacity: '2 992 ccm',
     powerKw: '610 kW',
     drivetrain: 'RWD (Hybrid)',
+    detailedDescription: {
+      CZ: [
+        "V6 motor o objemu 3,0 litru s úhlem rozevření 120°",
+        "Integrovaný elektromotor o výkonu 122 kW",
+        "Paket Assetto Fiorano pro snížení hmotnosti",
+        "Adaptivní tlumiče Multimatic optimalizované pro okruh",
+        "Prvky z uhlíkových vláken v interiéru i exteriéru",
+        "Digitální palubní deska s haptickou odezvou",
+        "Pneumatiky Michelin Pilot Sport Cup 2R",
+        "Speciální lakování z historického katalogu Ferrari"
+      ],
+      EN: [
+        "3.0L V6 engine with 120° bank angle",
+        "Integrated electric motor with 122 kW output",
+        "Assetto Fiorano weight-reduction package",
+        "Multimatic adaptive dampers optimized for track use",
+        "Carbon fiber elements throughout interior and exterior",
+        "Digital cockpit with haptic feedback",
+        "Michelin Pilot Sport Cup 2R tires",
+        "Special livery from the historical Ferrari catalog"
+      ]
+    },
     emotionalHeadline: { CZ: 'Budoucnost Maranella', EN: 'The future of Maranello' },
     story: { CZ: 'Nejnovější hybridní supersport.', EN: 'The latest hybrid supercar.' },
     specs: { engine: '3.0L V6 Hybrid', power: '830 HP', transmission: '8-speed DCT', fuel: 'Hybrid' },
@@ -74,6 +118,28 @@ export const cars: Car[] = [
     engineCapacity: '5 950 ccm',
     powerKw: '485 kW',
     drivetrain: 'AWD',
+    detailedDescription: {
+      CZ: [
+        "Motor W12 o objemu 6,0 litru s dvojitým přeplňováním",
+        "Natáčení všech kol pro lepší ovladatelnost",
+        "Interiér Mulliner Driving Specification s prošíváním kosočtverců",
+        "Bentley Dynamic Ride (48V aktivní stabilizátory)",
+        "Otočný displej Bentley Rotating Display",
+        "Audio systém Naim pro Bentley s 18 reproduktory",
+        "Paket Blackline pro exteriér",
+        "Sedadla s masáží, chlazením a vyhříváním"
+      ],
+      EN: [
+        "6.0L W12 twin-turbocharged engine",
+        "All-wheel steering for enhanced maneuverability",
+        "Mulliner Driving Specification with diamond quilting",
+        "Bentley Dynamic Ride (48V active anti-roll bars)",
+        "Bentley Rotating Display",
+        "Naim for Bentley 18-speaker audio system",
+        "Blackline specification for exterior",
+        "Massaging, cooled, and heated seating"
+      ]
+    },
     emotionalHeadline: { CZ: 'Definice luxusu', EN: 'The definition of luxury' },
     story: { CZ: 'Ultimátní cestovní koráb.', EN: 'The ultimate grand tourer.' },
     specs: { engine: '6.0L W12 TSI', power: '659 HP', transmission: '8-speed DCT', fuel: 'Benzín' },
@@ -97,6 +163,28 @@ export const cars: Car[] = [
     engineCapacity: '5 204 ccm',
     powerKw: '470 kW',
     drivetrain: 'RWD',
+    detailedDescription: {
+      CZ: [
+        "Atmosférický motor V10 o objemu 5,2 litru",
+        "Specifický design zadního kapoty z uhlíkových vláken",
+        "Systém LDVI (Lamborghini Dinamica Veicolo Integrata)",
+        "Vylepšená aerodynamika s o 35 % vyšším přítlakem",
+        "Brzdový systém CCB s optimalizovaným chlazením",
+        "Lehká skořepinová sedadla s Alcantarou",
+        "Systém zvedání přední nápravy (Lifter)",
+        "Zadní náhon (RWD) pro puristický zážitek"
+      ],
+      EN: [
+        "Naturally aspirated 5.2L V10 engine",
+        "Specific rear carbon fiber engine hood design",
+        "Lamborghini Dinamica Veicolo Integrata (LDVI) system",
+        "Enhanced aerodynamics with 35% more downforce",
+        "CCB braking system with optimized cooling",
+        "Lightweight bucket seats in Alcantara",
+        "Front axle lift system",
+        "Rear-wheel drive (RWD) for a purist experience"
+      ]
+    },
     emotionalHeadline: { CZ: 'Atmosférický orchestr', EN: 'Naturally aspirated orchestra' },
     story: { CZ: 'Poslední evoluce motoru V10.', EN: 'The final evolution of the V10.' },
     specs: { engine: '5.2L V10', power: '640 HP', transmission: '7-speed LDF', fuel: 'Benzín' },
@@ -120,6 +208,28 @@ export const cars: Car[] = [
     engineCapacity: '3 982 ccm',
     powerKw: '430 kW',
     drivetrain: '4x4',
+    detailedDescription: {
+      CZ: [
+        "Ručně skládaný motor V8 Biturbo o výkonu 585 koní",
+        "Matný lak Magno z programu G Manufaktur",
+        "Interiér Superior Line s kůží Nappa",
+        "Výfukový systém AMG Performance s klapkami",
+        "22palcová kovaná kola AMG v černé barvě",
+        "Audio systém Burmester Surround Sound",
+        "Sada Night Package II (černé doplňky)",
+        "Multibeam LED světlomety"
+      ],
+      EN: [
+        "Handcrafted V8 Biturbo engine with 585 HP",
+        "Magno matte finish from G Manufaktur program",
+        "Superior Line interior with Nappa leather",
+        "AMG Performance exhaust system with valves",
+        "22-inch AMG forged wheels in black",
+        "Burmester Surround Sound system",
+        "Night Package II (black accents)",
+        "Multibeam LED headlights"
+      ]
+    },
     emotionalHeadline: { CZ: 'Ikona terénu', EN: 'Icon of the road' },
     story: { CZ: 'Vůz v limitovaném provedení Magno.', EN: 'Vehicle in Magno limited edition.' },
     specs: { engine: '4.0L V8 Biturbo', power: '585 HP', transmission: 'AMG 9G', fuel: 'Benzín' },
@@ -143,117 +253,31 @@ export const cars: Car[] = [
     engineCapacity: '2 993 ccm',
     powerKw: '390 kW',
     drivetrain: '4x4',
+    detailedDescription: {
+      CZ: [
+        "Šestiválcový motor M TwinPower Turbo o výkonu 530 k",
+        "Inteligentní pohon všech kol M xDrive s možností 2WD",
+        "Karbonová skořepinová sedadla M Carbon",
+        "M Drive Professional včetně Drift Analyzeru",
+        "BMW Laserlight s modrými akcenty",
+        "Karbonový exteriérový paket M Carbon",
+        "M Shadowline světlomety s černým podkladem",
+        "Harman Kardon Surround Sound systém"
+      ],
+      EN: [
+        "M TwinPower Turbo six-cylinder engine with 530 HP",
+        "M xDrive intelligent AWD with 2WD mode",
+        "M Carbon bucket seats",
+        "M Drive Professional including Drift Analyzer",
+        "BMW Laserlight with blue accents",
+        "M Carbon exterior package",
+        "M Shadowline headlights with black base",
+        "Harman Kardon Surround Sound system"
+      ]
+    },
     emotionalHeadline: { CZ: 'Čirá radost', EN: 'Pure joy' },
     story: { CZ: 'Nová M4 s pohonem všech kol.', EN: 'New M4 with all-wheel drive.' },
     specs: { engine: '3.0L S58', power: '530 HP', transmission: '8-speed M', fuel: 'Benzín' },
     equipment: ["Carbon Pack", "Laserlight", "M Seats", "Adaptive Suspension"]
-  },
-  {
-    id: 'aston-martin-dbs',
-    brand: 'Aston Martin',
-    model: 'DBS Superleggera',
-    year: 2023,
-    bodyType: 'Coupe',
-    inServiceFrom: '08/2023',
-    price: '8 450 000 Kč',
-    km: '4 200 km',
-    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '5 204 ccm', powerKw: '533 kW', drivetrain: 'RWD',
-    emotionalHeadline: { CZ: 'Britská elegance', EN: 'British elegance' },
-    story: { CZ: 'Ultimátní GT od Astonu.', EN: 'The ultimate GT by Aston Martin.' },
-    specs: { engine: '5.2L V12', power: '725 HP', transmission: '8-speed Auto', fuel: 'Benzín' },
-    equipment: ["Carbon Ceramic", "B&O Audio", "Heated Seats"]
-  },
-  {
-    id: 'audi-rs6-avant',
-    brand: 'Audi',
-    model: 'RS6 Avant Performance',
-    year: 2024,
-    bodyType: 'SUV',
-    inServiceFrom: '06/2024',
-    price: '4 190 000 Kč',
-    km: '100 km',
-    image: 'https://images.unsplash.com/photo-1606148644561-94917ef36d93?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1606148644561-94917ef36d93?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '3 996 ccm', powerKw: '463 kW', drivetrain: 'Quattro',
-    emotionalHeadline: { CZ: 'Všestranný dravec', EN: 'Versatile predator' },
-    story: { CZ: 'Nejrychlejší kombi na světě.', EN: 'The fastest wagon in the world.' },
-    specs: { engine: '4.0L V8 Biturbo', power: '630 HP', transmission: 'Tiptronic', fuel: 'Benzín' },
-    equipment: ["Dynamic Package Plus", "Ceramic Brakes", "RS Design"]
-  },
-  {
-    id: 'rolls-royce-cullinan',
-    brand: 'Rolls-Royce',
-    model: 'Cullinan Black Badge',
-    year: 2023,
-    bodyType: 'SUV',
-    inServiceFrom: '10/2023',
-    price: '14 500 000 Kč',
-    km: '1 800 km',
-    image: 'https://images.unsplash.com/photo-1631215560129-229959bc124e?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1631215560129-229959bc124e?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '6 750 ccm', powerKw: '441 kW', drivetrain: 'AWD',
-    emotionalHeadline: { CZ: 'Absolutní vrchol', EN: 'Absolute peak' },
-    story: { CZ: 'Vrchol luxusu na čtyřech kolech.', EN: 'The peak of luxury on four wheels.' },
-    specs: { engine: '6.75L V12', power: '600 HP', transmission: 'Auto', fuel: 'Benzín' },
-    equipment: ["Starlight Headliner", "Viewing Suite", "Lounge Seat"]
-  },
-  {
-    id: 'mclaren-750s',
-    brand: 'McLaren',
-    model: '750S Spider',
-    year: 2024,
-    bodyType: 'Convertible',
-    inServiceFrom: '05/2024',
-    price: '9 800 000 Kč',
-    km: '450 km',
-    image: 'https://images.unsplash.com/photo-1621259182978-f09e5e2ca1c5?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1621259182978-f09e5e2ca1c5?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '3 994 ccm', powerKw: '552 kW', drivetrain: 'RWD',
-    emotionalHeadline: { CZ: 'Lehkost a rychlost', EN: 'Lightness and speed' },
-    story: { CZ: 'Nástupce legendární 720S.', EN: 'The successor to the legendary 720S.' },
-    specs: { engine: '4.0L V8 Biturbo', power: '750 HP', transmission: '7-speed SSG', fuel: 'Benzín' },
-    equipment: ["Lightweight Wheels", "Bowers & Wilkins", "Track Pack"]
-  },
-  {
-    id: 'range-rover-sv',
-    brand: 'Land Rover',
-    model: 'Range Rover SV LWB',
-    year: 2024,
-    bodyType: 'SUV',
-    inServiceFrom: '01/2024',
-    price: '7 200 000 Kč',
-    km: '2 000 km',
-    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '4 395 ccm', powerKw: '452 kW', drivetrain: 'AWD',
-    emotionalHeadline: { CZ: 'První třída na cestách', EN: 'First class on the road' },
-    story: { CZ: 'Verze SV s prodlouženým rozvorem.', EN: 'SV version with long wheelbase.' },
-    specs: { engine: '4.4L V8', power: '615 HP', transmission: 'Auto', fuel: 'Benzín' },
-    equipment: ["Executive Seating", "Signature Sound", "Ceramic Finishes"]
-  },
-  {
-    id: 'porsche-taycan-ts',
-    brand: 'Porsche',
-    model: 'Taycan Turbo S',
-    year: 2024,
-    bodyType: 'Sedan',
-    inServiceFrom: '03/2024',
-    price: '4 950 000 Kč',
-    km: '500 km',
-    image: 'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?auto=format&fit=crop&q=100&w=2400',
-    images: ['https://images.unsplash.com/photo-1594502184342-2e12f877aa73?auto=format&fit=crop&q=100&w=2400'],
-    interiorImages: [], exteriorImages: [],
-    engineCapacity: '0 ccm', powerKw: '560 kW', drivetrain: 'AWD',
-    emotionalHeadline: { CZ: 'Elektrická bouře', EN: 'Electric storm' },
-    story: { CZ: 'Nejvýkonnější elektrické Porsche.', EN: 'The most powerful electric Porsche.' },
-    specs: { engine: 'Dual Electric Motors', power: '761 HP', transmission: '2-speed', fuel: 'Elektro' },
-    equipment: ["Performance Battery Plus", "Sport Chrono", "Panoramic Roof"]
   }
 ];
