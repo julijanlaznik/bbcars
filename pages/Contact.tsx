@@ -33,14 +33,14 @@ const Contact: React.FC<ContactProps> = ({ lang }) => {
             </div>
 
             <div className="flex flex-wrap gap-6 md:gap-12 pt-6 md:pt-10">
-              <a href="https://instagram.com/bbcars.eu" target="_blank" className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/50 hover:text-white transition-colors">Instagram</a>
-              <a href="https://facebook.com/bbcars.eu" target="_blank" className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/50 hover:text-white transition-colors">Facebook</a>
+              <a href="https://www.instagram.com/bbcars_4you/" target="_blank" className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/50 hover:text-white transition-colors">Instagram</a>
+              <a href="https://www.facebook.com/profile.php?id=100030982372648" target="_blank" className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/50 hover:text-white transition-colors">Facebook</a>
               <a href="https://wa.me/420605034911" target="_blank" className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-white/50 hover:text-white transition-colors">WhatsApp</a>
             </div>
           </div>
 
           <div className="h-[400px] md:h-[600px] bg-[#111] relative overflow-hidden flex items-center justify-center grayscale opacity-50 border border-white/5">
-             <img src="https://images.unsplash.com/photo-1517733948473-efec634333da?auto=format&fit=crop&q=80&w=2400" className="w-full h-full object-cover" alt="Contact decor" />
+             <img src="showroom.png" className="w-full h-full object-cover" alt="Contact decor" />
              <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-black/80 backdrop-blur-sm p-8 md:p-10 border border-white/20 text-center">
                     <p className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] mb-4">Navštivte nás</p>

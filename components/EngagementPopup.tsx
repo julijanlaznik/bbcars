@@ -63,7 +63,7 @@ const EngagementPopup: React.FC = () => {
         isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-90'
       }`}
     >
-      <div className="relative bg-black/60 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden">
+      <div className="relative bg-white/[0.05] backdrop-blur-[40px] border border-white/20 shadow-2xl overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[2px] bg-[#dbad1e]" />
         
         <button 
@@ -78,15 +78,15 @@ const EngagementPopup: React.FC = () => {
         <div className="p-8">
           {!isExpanded ? (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              <h3 className="text-lg font-bold font-heading uppercase tracking-tighter mb-3 leading-tight">
+              <h3 className="text-lg font-bold font-heading uppercase tracking-tighter mb-3 leading-tight text-white">
                 Hledáte konkrétní specifikaci?
               </h3>
-              <p className="text-white/50 text-sm font-light leading-relaxed mb-6">
+              <p className="text-white/60 text-sm font-light leading-relaxed mb-6">
                 Víme, že v tomto segmentu rozhodují detaily. Pokud náš showroom momentálně nenabízí přesně to, co hledáte, využijte naši síť kontaktů.
               </p>
               <button 
                 onClick={() => setIsExpanded(true)}
-                className="w-full bg-white text-black py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-[#dbad1e] transition-all duration-500"
+                className="w-full bg-[#dbad1e] text-black py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white transition-all duration-500"
               >
                 KONZULTOVAT VÝBĚR
               </button>
@@ -104,18 +104,18 @@ const EngagementPopup: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="border-b border-white/10 pb-1 focus-within:border-[#dbad1e] transition-all">
-                    <label className="block text-[8px] uppercase tracking-widest text-white/30 mb-2 font-bold">KONTAKT (TEL/EMAIL)</label>
-                    <input required type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Váš kontakt..." className="w-full bg-transparent outline-none text-sm font-light py-1 text-white" />
+                  <div className="border-b border-white/20 pb-1 focus-within:border-[#dbad1e] transition-all">
+                    <label className="block text-[8px] uppercase tracking-widest text-white/40 mb-2 font-bold">KONTAKT (TEL/EMAIL)</label>
+                    <input required type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Váš kontakt..." className="w-full bg-transparent outline-none text-sm font-light py-1 text-white placeholder:text-white/10" />
                   </div>
-                  <div className="border-b border-white/10 pb-1 focus-within:border-[#dbad1e] transition-all">
-                    <label className="block text-[8px] uppercase tracking-widest text-white/30 mb-2 font-bold">CO VÁM CHYBÍ V NABÍDCE?</label>
-                    <textarea rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Značka, model..." className="w-full bg-transparent outline-none text-sm font-light resize-none py-1 text-white" />
+                  <div className="border-b border-white/20 pb-1 focus-within:border-[#dbad1e] transition-all">
+                    <label className="block text-[8px] uppercase tracking-widest text-white/40 mb-2 font-bold">CO VÁM CHYBÍ V NABÍDCE?</label>
+                    <textarea rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Značka, model..." className="w-full bg-transparent outline-none text-sm font-light resize-none py-1 text-white placeholder:text-white/10" />
                   </div>
                   <button type="submit" className="w-full bg-[#dbad1e] text-black py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white transition-all duration-500">
                     ODESLAT DOTAZ
                   </button>
-                  <button type="button" onClick={() => setIsExpanded(false)} className="w-full text-white/20 hover:text-white/40 text-[8px] uppercase tracking-widest transition-colors font-bold">
+                  <button type="button" onClick={() => setIsExpanded(false)} className="w-full text-white/20 hover:text-white/40 text-[8px] uppercase tracking-widest transition-colors font-bold mt-2">
                     ZPĚT
                   </button>
                 </form>

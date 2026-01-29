@@ -49,10 +49,15 @@
         h1, h2, h3, .font-heading { font-family: 'Syne', sans-serif; }
         .scroll-smooth { scroll-behavior: smooth; }
 
-        /* --- ANIMATION SYSTEM --- */
+        /* --- LUXURY ANIMATION SYSTEM --- */
         @keyframes revealUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes maskRevealUp {
+            from { opacity: 0; transform: translateY(100%); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         @keyframes revealDown {
@@ -67,6 +72,11 @@
 
         .reveal-up { 
             animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            opacity: 0;
+        }
+
+        .mask-reveal {
+            animation: maskRevealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
         }
         

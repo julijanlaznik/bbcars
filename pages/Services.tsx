@@ -13,7 +13,7 @@ const Services: React.FC<{ lang: Language }> = ({ lang }) => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-[#050505]" />
         </div>
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl md:text-9xl font-bold tracking-tighter uppercase font-heading">{lang === 'CZ' ? 'Komplexní služby' : 'Our Services'}</h1>
+          <h1 className="text-3xl md:text-7xl font-bold tracking-tighter uppercase font-heading">{lang === 'CZ' ? 'Komplexní služby' : 'Our Services'}</h1>
         </div>
       </section>
 
@@ -21,7 +21,7 @@ const Services: React.FC<{ lang: Language }> = ({ lang }) => {
       <section className="py-24 px-8 md:px-20 max-w-screen-2xl mx-auto border-t border-white/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
-            <h2 className="text-4xl md:text-8xl font-bold font-heading uppercase tracking-tighter mb-12">Odtah & Dovoz</h2>
+            <h2 className="text-3xl md:text-8xl font-bold font-heading uppercase tracking-tighter mb-12">Odtah & Dovoz</h2>
             <div className="space-y-8 text-white/50 font-light">
               <p className="text-2xl text-white">Zajišťujeme profesionální přepravu vašich vozů s maximální péčí.</p>
               <ul className="space-y-4">
@@ -57,7 +57,7 @@ const Services: React.FC<{ lang: Language }> = ({ lang }) => {
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <h2 className="text-4xl md:text-8xl font-bold font-heading uppercase tracking-tighter mb-12">Financování & Pojištění</h2>
+            <h2 className="text-3xl md:text-7xl font-bold font-heading uppercase tracking-tighter mb-12">Financování & Pojištění</h2>
             <div className="space-y-12">
               <div>
                 <h3 className="text-3xl font-bold mb-4 uppercase font-heading">Poskytujeme financování vozidel</h3>

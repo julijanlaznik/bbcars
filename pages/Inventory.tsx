@@ -5,9 +5,10 @@ import { Language } from '../types';
 import { translations } from '../i18n/translations';
 import { cars } from '../data/cars';
 
-const useReveal = () => {
+// Fix: Making useReveal generic to support different element types (anchor, div, etc.)
+const useReveal = <T extends HTMLElement>() => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<T>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setIsVisible(true);
@@ -167,7 +168,8 @@ const Inventory: React.FC<InventoryProps> = ({ lang }) => {
 };
 
 const CarItem: React.FC<{ car: any, index: number, t: any }> = ({ car, index, t }) => {
-  const { ref, isVisible } = useReveal();
+  // Fix: Specifying HTMLAnchorElement for useReveal as Link forwards ref to an anchor element
+  const { ref, isVisible } = useReveal<HTMLAnchorElement>();
   return (
     <Link 
       ref={ref}
