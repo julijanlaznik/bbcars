@@ -9,7 +9,7 @@ const Journal: React.FC<{ lang: Language }> = ({ lang }) => {
     <div className="pt-40 pb-40 px-6 md:px-20 bg-[#050505] min-h-screen">
       <div className="max-w-screen-2xl mx-auto">
         <header className="mb-24 text-center">
-          <h1 className="text-5xl md:text-9xl font-bold tracking-tighter uppercase font-heading leading-none">Novinky</h1>
+          <h1 className="text-5xl md:text-9xl font-bold tracking-tighter uppercase font-heading leading-none">Aktuality</h1>
           <p className="text-white/30 text-sm tracking-widest uppercase mt-8">Zprávy ze světa BBCars a exkluzivních automobilů</p>
         </header>
 

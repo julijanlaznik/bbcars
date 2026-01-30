@@ -78,7 +78,7 @@ const ArticleDetail: React.FC<{ lang: Language }> = ({ lang }) => {
         <div className="mt-32 pt-16 border-t border-white/5">
            <Link to="/journal" className="group flex items-center space-x-4 text-[10px] uppercase tracking-[0.5em] font-bold">
              <span className="text-[#dbad1e] transition-transform group-hover:-translate-x-2">←</span>
-             <span>Zpět na Novinky</span>
+             <span>Zpět na Aktuality</span>
            </Link>
         </div>
       </div>

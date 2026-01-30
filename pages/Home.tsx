@@ -116,8 +116,8 @@ const Home: React.FC<{ lang: Language }> = ({ lang }) => {
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.479507817088!2d13.5855263!3d49.7423018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470ae9a9c7382f71%3A0x8892f3d242699042!2sPlze%C5%88sk%C3%A1%20968%2C%20337%2001%20Rokycany!5e1!3m2!1scs!2scz!4v1715600000000!5m2!1scs!2scz&maptype=satellite";
 
   const heroImages = [
-    "/pobocka-hero.webp",
-    "/hero-foto.webp",
+    "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=2000",
+    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000",
     "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&q=80&w=2000"
   ];
 
@@ -161,7 +161,7 @@ const Home: React.FC<{ lang: Language }> = ({ lang }) => {
 
         {/* DARK OVERLAY (Triangle on PC/Tablet, Full on Mobile) */}
         <div 
-          className={`absolute top-0 left-0 w-full h-full bg-black/70 z-[15] transition-transform duration-[1800ms] cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 'translate-x-0' : '-translate-x-full'}`}
+          className={`absolute top-0 left-0 w-full h-full bg-black/50 z-[15] transition-transform duration-[1800ms] cubic-bezier(0.16, 1, 0.3, 1) ${mounted ? 'translate-x-0' : '-translate-x-full'}`}
           style={{
             clipPath: isMobile 
               ? 'none' 
@@ -172,23 +172,40 @@ const Home: React.FC<{ lang: Language }> = ({ lang }) => {
         {/* Hero Content */}
         <div className="relative z-20 w-full max-w-screen-xl mx-auto">
           <div className="max-w-4xl">
-            <h1 className="mb-8 md:mb-14 uppercase leading-tight">
-              <span className={`block text-[10px] md:text-[9px] tracking-[0.5em] font-medium text-white/60 mb-3 md:mb-5 transition-all duration-[1000ms] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} delay-100 uppercase`}>
+            <h1 className="mb-10 md:mb-14 uppercase">
+              <span className={`block text-[10px] md:text-[9px] tracking-[0.5em] font-medium text-white/60 mb-4 md:mb-5 transition-all duration-[1000ms] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} delay-100 uppercase`}>
                 {lang === 'CZ' ? 'Prémiové vozy s osobním přístupem' : 'Premium vehicles with a personal approach'}
               </span>
-              <span className={`block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-medium tracking-tight font-heading text-white transition-[opacity,transform] duration-[1200ms] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} delay-200`}>
+              <span className={`block text-[2.8rem] sm:text-5xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-medium tracking-tight font-heading text-white leading-[1.1] md:leading-tight transition-[opacity,transform] duration-[1200ms] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} delay-200`}>
                 {lang === 'CZ' ? 'VÁŠ VYSNĚNÝ VŮZ ČEKÁ' : 'YOUR DREAM CAR AWAITS'}
               </span>
             </h1>
-            {/* QuickSearchPanel & Direct Link */}
+            
+            {/* Action Area */}
             <div className={`transition-[opacity,transform] duration-[1200ms] ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} delay-300`}>
-              <QuickSearchPanel lang={lang} />
-              <div className="mt-8 px-2">
+              {/* DESKTOP SEARCH PANEL */}
+              <div className="hidden md:block">
+                <QuickSearchPanel lang={lang} />
+                <div className="mt-8 px-2">
+                  <Link 
+                    to="/nabidka" 
+                    className="inline-block text-[10px] uppercase tracking-[0.5em] font-medium text-white/20 hover:text-white border-b border-white/5 hover:border-white pb-1 transition-all duration-500"
+                  >
+                    {lang === 'CZ' ? 'Zobrazit celou nabídku' : 'View full inventory'}
+                  </Link>
+                </div>
+              </div>
+
+              {/* MOBILE DIRECT BUTTON */}
+              <div className="block md:hidden">
                 <Link 
                   to="/nabidka" 
-                  className="inline-block text-[10px] uppercase tracking-[0.5em] font-medium text-white/20 hover:text-white border-b border-white/5 hover:border-white pb-1 transition-all duration-500"
+                  className="w-full bg-[#dbad1e] text-black py-5 px-10 text-[11px] font-bold uppercase tracking-[0.5em] transition-all duration-500 flex items-center justify-center space-x-4 active:scale-95"
                 >
-                  {lang === 'CZ' ? 'Zobrazit celou nabídku' : 'View full inventory'}
+                  <span>{lang === 'CZ' ? 'NABÍDKA VOZŮ' : 'VIEW INVENTORY'}</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
                 </Link>
               </div>
             </div>
@@ -247,7 +264,7 @@ const Home: React.FC<{ lang: Language }> = ({ lang }) => {
       <section className="py-32 md:py-48 px-6 md:px-20 bg-[#050505]" ref={journalReveal.ref}>
         <div className="max-w-screen-xl mx-auto">
           <div className={`mb-16 transition-all duration-1000 ${journalReveal.isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase font-heading leading-none">Novinky</h2>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase font-heading leading-none">Aktuality</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {journalArticles.map((article, idx) => (
@@ -288,7 +305,7 @@ const Home: React.FC<{ lang: Language }> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row h-auto lg:min-h-[500px]">
           <div className="relative w-full lg:w-1/2 p-12 md:p-20 flex flex-col justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-               <img src="/showroom.png" alt="Showroom Background" className="w-full h-full object-cover grayscale opacity-30" />
+               <img src="https://images.unsplash.com/photo-1542362567-b05486f69246?auto=format&fit=crop&q=80&w=1200" alt="Showroom Background" className="w-full h-full object-cover grayscale opacity-30" />
                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
             </div>
             <div className="relative z-10">

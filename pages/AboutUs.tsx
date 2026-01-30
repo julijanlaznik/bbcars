@@ -94,7 +94,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[2px] bg-white/5 max-w-5xl mx-auto">
             <div className={`bg-[#050505] p-12 flex flex-col items-center text-center group transition-all duration-[1200ms] delay-100 cubic-bezier(0.34, 1.56, 0.64, 1) ${teamReveal.isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-75'}`}>
               <div className="w-56 h-56 rounded-full overflow-hidden mb-10 grayscale group-hover:grayscale-0 transition-all duration-1000 border border-white/10 relative">
-                <img src="" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jakub Buršík" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jakub Buršík" />
                 <div className="absolute inset-0 bg-[#dbad1e]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
               <h3 className="text-3xl font-bold font-heading uppercase tracking-tight mb-4 group-hover:text-[#dbad1e] transition-colors">Jakub Buršík</h3>
@@ -105,7 +105,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
 
             <div className={`bg-[#050505] p-12 flex flex-col items-center text-center group transition-all duration-[1200ms] delay-300 cubic-bezier(0.34, 1.56, 0.64, 1) ${teamReveal.isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-32 scale-75'}`}>
               <div className="w-56 h-56 rounded-full overflow-hidden mb-10 grayscale group-hover:grayscale-0 transition-all duration-1000 border border-white/10 relative">
-                <img src="" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jan Buršík" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Jan Buršík" />
                 <div className="absolute inset-0 bg-[#dbad1e]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
               <h3 className="text-3xl font-bold font-heading uppercase tracking-tight mb-4 group-hover:text-[#dbad1e] transition-colors">Jan Buršík</h3>
